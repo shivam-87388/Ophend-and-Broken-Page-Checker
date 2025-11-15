@@ -8,7 +8,7 @@ const constructSitemapUrl = (input) => {
   if (input.includes("sitemap")) {
     return input.startsWith("http") ? input : `https://${input}`;
   }
-  
+
   // Otherwise, append /sitemap.xml to the domain
   const url = input.startsWith("http") ? input : `https://${input}`;
   // Remove trailing slash if present
@@ -18,7 +18,7 @@ const constructSitemapUrl = (input) => {
 
 exports.checkSitemap = async (req, res) => {
   const { url, sitemapUrl } = req.body;
-  
+
   // Accept either url or sitemapUrl for flexibility
   const inputUrl = sitemapUrl || url;
 
@@ -30,7 +30,7 @@ exports.checkSitemap = async (req, res) => {
 
   try {
     console.log(`Fetching sitemap from: ${finalSitemapUrl}`);
-    
+
     // Fetch sitemap XML with timeout
     const response = await axios.get(finalSitemapUrl, { timeout: 10000 });
     const xml = response.data;
@@ -64,11 +64,11 @@ exports.checkSitemap = async (req, res) => {
         }
       } catch (err) {
         const errorStatus = err.response?.status || "Unreachable";
-        checkedUrls.push({ 
-          url: link, 
-          status: errorStatus, 
+        checkedUrls.push({
+          url: link,
+          status: errorStatus,
           type: "Broken Page ❌",
-          error: err.message 
+          error: err.message
         });
       }
     }
@@ -91,7 +91,7 @@ exports.checkSitemap = async (req, res) => {
     });
   } catch (error) {
     console.error("Error checking sitemap:", error.message);
-    
+
     if (error.code === "ENOTFOUND") {
       return res.status(400).json({ error: "Website not found. Please check the URL." });
     }
@@ -101,10 +101,10 @@ exports.checkSitemap = async (req, res) => {
     if (error.code === "ECONNABORTED") {
       return res.status(408).json({ error: "Request timeout. Website took too long to respond." });
     }
-    
-    res.status(500).json({ 
+
+    res.status(500).json({
       error: "Failed to process sitemap",
-      details: error.message 
+      details: error.message
     });
   }
 };

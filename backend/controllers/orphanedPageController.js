@@ -14,7 +14,7 @@ const constructSitemapUrl = (input) => {
 
 exports.checkOpenedPages = async (req, res) => {
   const { url, Url, sitemapUrl } = req.body;
-  
+
   // Support multiple parameter names for flexibility
   const inputUrl = url || Url || sitemapUrl;
 
@@ -26,7 +26,7 @@ exports.checkOpenedPages = async (req, res) => {
 
   try {
     console.log(`Fetching sitemap from: ${finalSitemapUrl}`);
-    
+
     // Fetch sitemap with timeout
     const response = await axios.get(finalSitemapUrl, { timeout: 10000 });
     const xml = response.data;
@@ -85,7 +85,7 @@ exports.checkOpenedPages = async (req, res) => {
 
   } catch (error) {
     console.error("Error checking opened pages:", error.message);
-    
+
     if (error.code === "ENOTFOUND") {
       return res.status(400).json({ error: "Website not found. Please check the URL." });
     }

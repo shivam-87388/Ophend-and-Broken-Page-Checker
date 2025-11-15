@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const checkSchema = new mongoose.Schema({
   checkedPage: {
     type: String,
-    required: true, 
+    required: true,
   },
   totalLinks: {
     type: Number,
@@ -12,7 +12,7 @@ const checkSchema = new mongoose.Schema({
   results: [
     {
       url: String,
-      status: mongoose.Schema.Types.Mixed, 
+      status: mongoose.Schema.Types.Mixed,
     },
   ],
   brokenLinks: {

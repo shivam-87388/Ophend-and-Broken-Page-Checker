@@ -14,7 +14,7 @@ const constructSitemapUrl = (input) => {
 
 exports.checkBrokenPages = async (req, res) => {
   const { url, sitemapUrl } = req.body;
-  
+
   const inputUrl = sitemapUrl || url;
 
   if (!inputUrl || typeof inputUrl !== "string" || inputUrl.trim() === "") {
@@ -25,11 +25,11 @@ exports.checkBrokenPages = async (req, res) => {
 
   try {
     console.log(`Fetching sitemap from: ${finalSitemapUrl}`);
-    
+
     // Fetch and parse sitemap XML with timeout
     const response = await axios.get(finalSitemapUrl, { timeout: 10000 });
     const xml = response.data;
-    
+
     let result;
     try {
       result = await parseStringPromise(xml);
@@ -49,10 +49,10 @@ exports.checkBrokenPages = async (req, res) => {
       try {
         const check = await axios.get(link, { timeout: 5000 });
         if (check.status !== 200) {
-          brokenLinks.push({ 
-            url: link, 
-            status: check.status, 
-            type: "Broken Page ❌" 
+          brokenLinks.push({
+            url: link,
+            status: check.status,
+            type: "Broken Page ❌"
           });
         }
       } catch (err) {
@@ -84,7 +84,7 @@ exports.checkBrokenPages = async (req, res) => {
     });
   } catch (error) {
     console.error("Error checking broken pages:", error.message);
-    
+
     if (error.code === "ENOTFOUND") {
       return res.status(400).json({ error: "Website not found. Please check the URL." });
     }
@@ -95,9 +95,9 @@ exports.checkBrokenPages = async (req, res) => {
       return res.status(408).json({ error: "Request timeout. Website took too long to respond." });
     }
 
-    res.status(500).json({ 
+    res.status(500).json({
       error: "Failed to process sitemap",
-      details: error.message 
+      details: error.message
     });
   }
 };
