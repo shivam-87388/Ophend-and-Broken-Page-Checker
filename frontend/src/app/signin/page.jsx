@@ -27,10 +27,10 @@ const Signin = () => {
     // Send data to backend API
     validationSchema: SigninSchema,
     onSubmit: (values, { resetForm }) => {
-      axios.post('http://localhost:5000/user/authenticate', values)
-        .then((result) => {
-          toast.success('Login successful');
-          localStorage.setItem("token", result.data.token); // save token
+      axios.post('http://localhost:5000/user/login', values)
+        .then((response) => {
+          toast.success(response?.data?.message || "Login successfully");
+          localStorage.setItem("token", response.data.token); // save token
           resetForm();
         })
         .catch((error) => {
@@ -38,9 +38,8 @@ const Signin = () => {
           toast.error('Invalid email or password');
         });
     }
+    
   });
-
-
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100 dark:bg-neutral-950">
       <div className="w-full max-w-md mt-7 bg-white border border-gray-200 rounded-xl shadow-lg dark:bg-neutral-900 dark:border-neutral-700">
@@ -53,7 +52,7 @@ const Signin = () => {
               Don't have an account?{" "}
               <a
                 className="text-blue-600 decoration-2 hover:underline font-medium dark:text-blue-500"
-                href="/create-account"
+                href="/createaccount"
               >
                 Sign up here
               </a>
@@ -62,20 +61,28 @@ const Signin = () => {
 
           <div className="mt-5">
             {/* Google Sign In */}
-            <button
-              type="button"
-              className="w-full py-3 px-4 inline-flex justify-center cursor-pointer items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow hover:bg-gray-50 dark:bg-neutral-900 dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-800"
-            >
-              {/* Google Icon */}
-              <svg className="w-4 h-auto" width={46} height={47} viewBox="0 0 46 47" fill="none">
-                <path d="M46 24.0287C46 22.09 ..." fill="#4285F4" />
-              </svg>
-              Sign in with Google
-            </button>
+           <div className="mt-5">
+  {/* Google Sign Up */}
+  <button
+    type="button"
+    onClick={() => window.location.href = "https://accounts.google.com/"} // Replace with your own Google Auth link
+    className="w-full py-3 px-4 cursor-pointer inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow hover:bg-gray-50 active:bg-gray-100 dark:bg-neutral-900 dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-800 transition"
+  >
+    {/* Google Icon */}
+    <svg className="w-5 h-5" viewBox="0 0 533.5 544.3" xmlns="http://www.w3.org/2000/svg">
+      <path fill="#4285F4" d="M533.5 278.4c0-17.4-1.5-34.1-4.4-50.4H272v95.4h147.4c-6.4 34.5-25.5 63.7-54.3 83.2v68h87.7c51.4-47.4 80.7-117.3 80.7-196.2z" />
+      <path fill="#34A853" d="M272 544.3c73.5 0 135.1-24.3 180.1-65.9l-87.7-68c-24.4 16.4-55.6 26-92.4 26-71.1 0-131.4-47.9-153-112.3H27.7v70.6C72.3 482.1 166.5 544.3 272 544.3z" />
+      <path fill="#FBBC05" d="M119 324.1c-10.5-31.4-10.5-65.6 0-97H27.7v-70.6C72.3 62.2 166.5 0 272 0c59.8 0 113.6 21.3 155.9 56.2l-87.7 68c-24.3-16.3-55.5-26-92.3-26-71.1 0-131.4 47.9-153 112.3z" />
+      <path fill="#EA4335" d="M533.5 278.4c0-17.4-1.5-34.1-4.4-50.4H272v95.4h147.4c-6.4 34.5-25.5 63.7-54.3 83.2v68h87.7c51.4-47.4 80.7-117.3 80.7-196.2z" />
+    </svg>
+    <span>Sign up with Google</span>
+  </button>
 
-            <div className="py-3 flex items-center text-xs text-gray-400 uppercase before:flex-1 before:border-t before:border-gray-200 before:me-6 after:flex-1 after:border-t after:border-gray-200 after:ms-6 dark:text-neutral-500 dark:before:border-neutral-600 dark:after:border-neutral-600">
-              Or
-            </div>
+  {/* Divider */}
+  <div className="py-3 flex items-center text-xs text-gray-400 uppercase before:flex-1 before:border-t before:border-gray-200 before:me-6 after:flex-1 after:border-t after:border-gray-200 after:ms-6 dark:text-neutral-500 dark:before:border-neutral-600 dark:after:border-neutral-600">
+    Or
+  </div>
+</div>
 
             {/* Form */}
             <form onSubmit={signinForm.handleSubmit}>
@@ -121,7 +128,7 @@ const Signin = () => {
                     <input type="checkbox" className="shrink-0 mt-0.5 border-gray-200 rounded-sm text-blue-600 focus:ring-blue-500 dark:bg-neutral-800 dark:border-neutral-700" />
                     <label className="ms-2 text-sm dark:text-white">Remember me</label>
                   </div>
-                  <a href="#" className="text-sm text-blue-600 hover:underline dark:text-blue-500">
+                  <a href="/forgetpassword" className="text-sm text-blue-600 hover:underline dark:text-blue-500">
                     Forgot password?
                   </a>
                 </div>

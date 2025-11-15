@@ -29,24 +29,24 @@ const CreateAccount = () => {
         .oneOf([true], "You must accept the terms and conditions")
         .required("You must accept the terms and conditions"),
     }),
-  onSubmit: (values) => {
-  // Send form data to backend
-  axios.post('http://localhost:5000/user/register', values)
-    .then((response) => {
-      // Backend responds successfully
-      if (response.status === 201) { // account created
-        toast.success("Account created successfully!");
-      } else {
-        // Any unexpected status
-        toast.error("Error creating account");
-      }
-    })
-    .catch((error) => {
-      // If backend returns an error
-      const message = error.response?.data?.message || "Error creating account";
-      toast.error(message);
-    });
-}
+    onSubmit: (values) => {
+      // Send form data to backend
+      axios.post('http://localhost:5000/user/register', values)
+        .then((response) => {
+          // Backend responds successfully
+          if (response.status === 200) { // account created
+            toast.success(response?.data?.message || "Account created successfully");
+          } else {
+            // Any unexpected status
+            toast.error(response?.data?.message || "Error creating account");
+          }
+        })
+        .catch((error) => {
+          // If backend returns an error
+          const message = error.response?.data?.message || "Error creating account";
+          toast.error(message);
+        });
+    }
 
   });
 
@@ -59,10 +59,10 @@ const CreateAccount = () => {
               Create an Account
             </h1>
             <p className="mt-2 text-sm text-gray-600 dark:text-neutral-400">
-              Already have an account?{" "}
+              Already have an account?{""}
               <a
                 className="text-blue-600 decoration-2 hover:underline font-medium dark:text-blue-500"
-                href="/login"
+                href="/signin"
               >
                 Sign in here
               </a>
@@ -71,20 +71,28 @@ const CreateAccount = () => {
 
           <div className="mt-5">
             {/* Google Sign Up */}
-            <button
-              type="button"
-              className="w-full py-3 px-4 cursor-pointer inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow hover:bg-gray-50 dark:bg-neutral-900 dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-800"
-            >
-              {/* Google Icon */}
-              <svg className="w-4 h-auto" width={46} height={47} viewBox="0 0 46 47" fill="none">
-                <path d="M46 24.0287C46 22.09 ..." fill="#4285F4" />
-              </svg>
-              Sign up with Google
-            </button>
+            <div className="mt-5">
+  {/* Google Sign Up */}
+  <button
+    type="button"
+    onClick={() => window.location.href = "https://accounts.google.com/"} 
+    className="w-full py-3 px-4 cursor-pointer inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow hover:bg-gray-50 active:bg-gray-100 dark:bg-neutral-900 dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-800 transition"
+  >
+    {/* Google Icon */}
+    <svg className="w-5 h-5" viewBox="0 0 533.5 544.3" xmlns="http://www.w3.org/2000/svg">
+      <path fill="#4285F4" d="M533.5 278.4c0-17.4-1.5-34.1-4.4-50.4H272v95.4h147.4c-6.4 34.5-25.5 63.7-54.3 83.2v68h87.7c51.4-47.4 80.7-117.3 80.7-196.2z" />
+      <path fill="#34A853" d="M272 544.3c73.5 0 135.1-24.3 180.1-65.9l-87.7-68c-24.4 16.4-55.6 26-92.4 26-71.1 0-131.4-47.9-153-112.3H27.7v70.6C72.3 482.1 166.5 544.3 272 544.3z" />
+      <path fill="#FBBC05" d="M119 324.1c-10.5-31.4-10.5-65.6 0-97H27.7v-70.6C72.3 62.2 166.5 0 272 0c59.8 0 113.6 21.3 155.9 56.2l-87.7 68c-24.3-16.3-55.5-26-92.3-26-71.1 0-131.4 47.9-153 112.3z" />
+      <path fill="#EA4335" d="M533.5 278.4c0-17.4-1.5-34.1-4.4-50.4H272v95.4h147.4c-6.4 34.5-25.5 63.7-54.3 83.2v68h87.7c51.4-47.4 80.7-117.3 80.7-196.2z" />
+    </svg>
+    <span>Sign up with Google</span>
+  </button>
 
-            <div className="py-3 flex items-center text-xs text-gray-400 uppercase before:flex-1 before:border-t before:border-gray-200 before:me-6 after:flex-1 after:border-t after:border-gray-200 after:ms-6 dark:text-neutral-500 dark:before:border-neutral-600 dark:after:border-neutral-600">
-              Or
-            </div>
+  {/* Divider */}
+  <div className="py-3 flex items-center text-xs text-gray-400 uppercase before:flex-1 before:border-t before:border-gray-200 before:me-6 after:flex-1 after:border-t after:border-gray-200 after:ms-6 dark:text-neutral-500 dark:before:border-neutral-600 dark:after:border-neutral-600">
+    Or
+  </div>
+</div>
 
             {/* Form */}
             <form onSubmit={formik.handleSubmit}>
@@ -100,8 +108,8 @@ const CreateAccount = () => {
                         placeholder="First name"
                         {...formik.getFieldProps("firstName")}
                         className={`py-2.5 sm:py-3 px-4 border ${formik.touched.firstName && formik.errors.firstName
-                            ? "border-red-500"
-                            : "border-gray-300"
+                          ? "border-red-500"
+                          : "border-gray-300"
                           } rounded-lg w-full text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400`}
                       />
                       {formik.touched.firstName && formik.errors.firstName && (
@@ -115,8 +123,8 @@ const CreateAccount = () => {
                         placeholder="Last name"
                         {...formik.getFieldProps("lastName")}
                         className={`py-2.5 sm:py-3 px-4 border ${formik.touched.lastName && formik.errors.lastName
-                            ? "border-red-500"
-                            : "border-gray-300"
+                          ? "border-red-500"
+                          : "border-gray-300"
                           } rounded-lg w-full text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400`}
                       />
                       {formik.touched.lastName && formik.errors.lastName && (
@@ -134,8 +142,8 @@ const CreateAccount = () => {
                     name="email"
                     {...formik.getFieldProps("email")}
                     className={`py-2.5 sm:py-3 px-4 block w-full border ${formik.touched.email && formik.errors.email
-                        ? "border-red-500"
-                        : "border-gray-300"
+                      ? "border-red-500"
+                      : "border-gray-300"
                       } rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400`}
                   />
                   {formik.touched.email && formik.errors.email && (
@@ -151,8 +159,8 @@ const CreateAccount = () => {
                     name="password"
                     {...formik.getFieldProps("password")}
                     className={`py-2.5 sm:py-3 px-4 block w-full border ${formik.touched.password && formik.errors.password
-                        ? "border-red-500"
-                        : "border-gray-300"
+                      ? "border-red-500"
+                      : "border-gray-300"
                       } rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400`}
                   />
                   {formik.touched.password && formik.errors.password && (
@@ -168,8 +176,8 @@ const CreateAccount = () => {
                     name="confirmPassword"
                     {...formik.getFieldProps("confirmPassword")}
                     className={`py-2.5 sm:py-3 px-4 block w-full border ${formik.touched.confirmPassword && formik.errors.confirmPassword
-                        ? "border-red-500"
-                        : "border-gray-300"
+                      ? "border-red-500"
+                      : "border-gray-300"
                       } rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400`}
                   />
                   {formik.touched.confirmPassword && formik.errors.confirmPassword && (

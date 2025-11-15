@@ -1,13 +1,14 @@
 const mongoose = require("mongoose");
-const dotenv = require("dotenv");
+require("dotenv").config();
 
-// Direct MongoDB URL  add 
-const mongoURL = "mongodb+srv://Shivam:Shivam@cluster0.yk4kdyt.mongodb.net/mydb1100?retryWrites=true&w=majority&appName=Cluster0";
+const mongoURL = process.env.MONGO_URL;
 
-mongoose.connect(mongoURL, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-})
+if (!mongoURL) {
+  console.error("Error: MONGO_URL is not defined in .env file");
+  process.exit(1);
+}
+
+mongoose.connect(mongoURL)
 .then(() => {
   console.log("Database connected successfully");
 })
