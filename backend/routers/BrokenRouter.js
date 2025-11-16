@@ -1,8 +1,7 @@
-console.log("BrokenRouter loaded!");
 const express = require("express");
 const router = express.Router();
-const { checkBrokenPages } = require("../controllers/brokenPageController");
+const { checkBrokenLinks } = require("../controllers/BrokenController");
 
-router.post("/check-broken", checkBrokenPages);
+router.post("/check", checkBrokenLinks);
 
 module.exports = router;

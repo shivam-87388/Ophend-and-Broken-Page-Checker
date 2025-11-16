@@ -1,7 +1,0 @@
-const express = require("express");
-const router = express.Router();
-const { checkOpenedPages } = require("../controllers/orphanedPageController");
-
-router.post("/opened/check", checkOpenedPages);
-
-module.exports = router;

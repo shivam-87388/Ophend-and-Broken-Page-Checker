@@ -5,49 +5,86 @@ const jwt = require('jsonwebtoken');
 
 const router = express.Router();
 
-// CREATE ACCOUNT (SIGNUP)
+/* =======================================================
+   🟢 REGISTER (CREATE ACCOUNT)
+======================================================= */
 router.post('/register', async (req, res) => {
   try {
     const { firstName, lastName, email, password } = req.body;
 
+    // 1️⃣ Check if user already exists
     const existingUser = await UserModel.findOne({ email });
     if (existingUser) {
-      return res.status(400).json({ message: 'User already exists' });
+      return res
+        .status(400)
+        .json({ message: 'User already exists. Please login.' });
     }
 
+    // 2️⃣ Create a new user
     const newUser = new UserModel({ firstName, lastName, email, password });
-    const result = await newUser.save();
+    const savedUser = await newUser.save();
 
-    res.status(200).json({ message: 'Account created successfully', user: result });
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ message: 'Server error', error: err });
+    res
+      .status(201)
+      .json({ message: 'User registered successfully', user: savedUser });
+  } catch (error) {
+    console.error('Register error:', error);
+    res
+      .status(500)
+      .json({ message: 'Server error', error: error.message });
   }
 });
 
-// login router
-router.post("/login", async (req, res) => {
+/* =======================================================
+   🟢 LOGIN USER
+======================================================= */
+router.post('/login', async (req, res) => {
   try {
     const { email, password } = req.body;
 
-    //  Check user exist or not
-    const user = await User.findOne({ email });
+    // 1️⃣ Find user by email and password
+    const user = await UserModel.findOne({ email, password });
     if (!user) {
-      return res.status(400).json({ message: "Email is not registered" });
+      return res
+        .status(401)
+        .json({ message: 'Account does not exist or wrong credentials' });
     }
 
-    //  check paswword is correct
-    const isPasswordCorrect = await bcrypt.compare(password, user.password);
-    if (!isPasswordCorrect) {
-      return res.status(400).json({ message: "Password is incorrect" });
-    }
+    //  Generate JWT token
+    const token = jwt.sign(
+      { _id: user._id, firstName: user.firstName, lastName: user.lastName },
+      process.env.JWT_SECRET,
+      { expiresIn: '1h' }
+    );
 
-    // If everything ok then sucessfull login
-    res.status(200).json({ message: "Login successful", user });
+    res.status(200).json({
+      message: 'Login successful',
+      token,
+      user: {
+        id: user._id,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        email: user.email,
+      },
+    });
   } catch (error) {
-    res.status(500).json({ message: "Server error", error });
+    console.error('Login error:', error);
+    res
+      .status(500)
+      .json({ message: 'Server error', error: error.message });
   }
 });
 
+/* =======================================================
+   🟢 GET ALL USERS (optional for testing)
+======================================================= */
+router.get('/all', async (req, res) => {
+  try {
+    const users = await UserModel.find().select('-password'); // hide passwords
+    res.status(200).json(users);
+  } catch (error) {
+    res.status(500).json({ message: 'Server error', error: error.message });
+  }
+});
 
 module.exports = router;

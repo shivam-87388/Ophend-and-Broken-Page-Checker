@@ -1,28 +1,46 @@
-require('dotenv').config();
 const express = require('express');
-const app = express();
-const UserRouter = require('./routers/UserRouter');
-const SitemapRouter = require('./routers/SitemapRouter');
-const OrphanedRouter = require('./routers/OrphanedRouter');
-const BrokenRouter = require('./routers/BrokenRouter');
 const cors = require('cors');
+const mongoose = require('mongoose');
 
-const port = process.env.PORT || 5000;
-const corsOrigin = process.env.CORS_ORIGIN || 'http://localhost:3000';
+const UserRouter = require('./routers/UserRouter');
+const BrokenRouter = require('./routers/BrokenRouter');
+const OrphanRouter = require('./routers/OrphanRouter');
 
-// middleware
+const app = express();
+const PORT = 5000;
+
+// =============================
+//  Middleware
+// =============================
 app.use(cors({
-  origin: [corsOrigin],
+    origin: ['http://localhost:3000'],
 }));
 app.use(express.json());
 
-// routers
-app.use('/user', UserRouter);
-app.use("/api", SitemapRouter);
-app.use("/api", OrphanedRouter);
-app.use("/api", BrokenRouter);
+// =============================
+//  Database Connection
+// =============================
+mongoose.connect('mongodb://127.0.0.1:27017/major_project')
+    .then(() => console.log('MongoDB Connected Successfully'))
+    .catch(err => console.log('DB Error:', err));
 
-// start server
-app.listen(port, () => {
-  console.log(' Server started on port', port);
+// =============================
+//  Routers
+// =============================
+app.use('/user', UserRouter);
+app.use('/broken', BrokenRouter);
+app.use('/orphan', OrphanRouter);
+
+// =============================
+//   Default Routes
+// =============================
+app.get('/', (req, res) => {
+    res.send('Major Project Backend Running...');
+});
+
+// =============================
+//   Start Server
+// =============================
+app.listen(PORT, () => {
+    console.log(`Server running at http://localhost:${PORT}`);
 });
