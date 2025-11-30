@@ -1,29 +1,29 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const BrokenSchema = new mongoose.Schema({
   userId: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'User',
-    required: true
+    required: true,
+    ref: "User",
   },
   websiteUrl: {
     type: String,
-    required: true
+    required: true,
   },
   totalLinks: {
     type: Number,
-    required: true
+    required: true,
   },
   brokenLinks: [
     {
-      url: { type: String, required: true },
-      status: { type: Number, required: true }
+      url: String,
+      status: Number,
     }
   ],
   createdAt: {
     type: Date,
-    default: Date.now
-  }
+    default: Date.now,
+  },
 });
 
-module.exports = mongoose.model('BrokenReport', BrokenSchema);
+module.exports = mongoose.model("BrokenReport", BrokenSchema);

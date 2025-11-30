@@ -1,139 +1,130 @@
-const axios = require("axios");
-const xml2js = require("xml2js");
 const puppeteer = require("puppeteer");
 const OrphanReport = require("../models/OrphanModel");
 
-exports.checkOrphanedPages = async (req, res) => {
-  try {
-    const websiteUrl = req.body.url;
+// Timeout configuration (in milliseconds)
+const TIMEOUT_CONFIG = {
+  pageNavigation: 30000, // 30 seconds for page navigation
+  pageGoto: 30000,       // 30 seconds for goto
+  overallCheck: 300000   // 5 minutes for overall check
+};
 
-    if (!websiteUrl) {
+exports.checkOrphanPages = async (req, res) => {
+  let browser;
+  let timeoutId;
+
+  try {
+    const { url, userId, timeout } = req.body;
+
+    if (!url) {
       return res.status(400).json({ message: "URL is required" });
     }
 
-    console.log("Checking orphaned pages on:", websiteUrl);
+    // Allow custom timeout from client, otherwise use defaults
+    const overallTimeout = timeout || TIMEOUT_CONFIG.overallCheck;
 
-    // ------------------------------------
-    // STEP 1 → CHECK IF SITEMAP EXISTS
-    // ------------------------------------
-    const sitemapUrls = [
-      websiteUrl + "/sitemap.xml",
-      websiteUrl + "/sitemap_index.xml",
-      websiteUrl + "/sitemap/",
-    ];
-
-    let sitemapFound = null;
-
-    for (let sm of sitemapUrls) {
-      try {
-        await axios.get(sm);
-        sitemapFound = sm;
-        break;
-      } catch (e) {}
-    }
-
-    let sitemapPages = [];
-    let linkedPages = new Set();
-
-    // ------------------------------------
-    // STEP 2 → IF SITEMAP EXISTS → READ IT
-    // ------------------------------------
-    if (sitemapFound) {
-      console.log("Sitemap found:", sitemapFound);
-
-      const { data } = await axios.get(sitemapFound);
-      const parsed = await xml2js.parseStringPromise(data);
-
-      if (parsed.urlset && parsed.urlset.url) {
-        sitemapPages = parsed.urlset.url.map(u => u.loc[0]);
-      } else if (parsed.sitemapindex && parsed.sitemapindex.sitemap) {
-        for (const sm of parsed.sitemapindex.sitemap) {
-          try {
-            const smData = await axios.get(sm.loc[0]);
-            const smParsed = await xml2js.parseStringPromise(smData.data);
-
-            const childUrls = smParsed.urlset.url.map(u => u.loc[0]);
-            sitemapPages.push(...childUrls);
-          } catch (e) {}
-        }
-      }
-
-      sitemapPages = [...new Set(sitemapPages)];
-    }
-
-    // --------------------------------------------------
-    // STEP 3 → CRAWL ALL PAGES WITH PUPPETEER TO FIND LINKS
-    // --------------------------------------------------
-    const browser = await puppeteer.launch({
-      headless: "new",
-      args: ["--no-sandbox"],
+    // Create promise that rejects after overall timeout
+    const timeoutPromise = new Promise((_, reject) => {
+      timeoutId = setTimeout(() => {
+        reject(new Error("Overall check timeout exceeded"));
+      }, overallTimeout);
     });
 
-    const page = await browser.newPage();
-    const crawlQueue = sitemapFound ? [...sitemapPages] : [websiteUrl];
-    const visited = new Set();
+    // Launch browser with timeout
+    browser = await Promise.race([
+      puppeteer.launch({
+        headless: "new",
+        args: ["--no-sandbox"]
+      }),
+      timeoutPromise
+    ]);
 
-    while (crawlQueue.length > 0) {
-      const currentUrl = crawlQueue.shift();
+    const page = await Promise.race([
+      browser.newPage(),
+      timeoutPromise
+    ]);
 
-      if (visited.has(currentUrl)) continue;
+    // Set page timeout
+    page.setDefaultNavigationTimeout(TIMEOUT_CONFIG.pageGoto);
+    page.setDefaultTimeout(TIMEOUT_CONFIG.pageNavigation);
+
+    let visited = new Set();
+    let queue = [url];
+    let parentLinks = {};
+
+    while (queue.length > 0 && visited.size < 100) {
+      const currentUrl = queue.shift();
       visited.add(currentUrl);
 
       try {
-        await page.goto(currentUrl, { waitUntil: "networkidle2", timeout: 20000 });
+        await Promise.race([
+          page.goto(currentUrl, { waitUntil: "networkidle2" }),
+          timeoutPromise
+        ]);
 
-        // extract internal links
-        const internalLinks = await page.evaluate(() => {
-          const anchors = Array.from(document.querySelectorAll("a[href]"));
-          return anchors.map(a => a.href);
+        const internalLinks = await Promise.race([
+          page.evaluate(() => {
+            return Array.from(document.querySelectorAll("a[href]"))
+              .map(a => a.href)
+              .filter(link => link.startsWith(location.origin));
+          }),
+          timeoutPromise
+        ]);
+
+        internalLinks.forEach(link => {
+          if (!parentLinks[link]) parentLinks[link] = [];
+          parentLinks[link].push(currentUrl);
         });
 
-        internalLinks.forEach((l) => {
-          if (l.startsWith(websiteUrl)) {
-            linkedPages.add(l);
-            if (!visited.has(l)) crawlQueue.push(l);
-          }
+        internalLinks.forEach(link => {
+          if (!visited.has(link)) queue.push(link);
         });
 
-      } catch (e) {}
+      } catch (err) {
+        console.log("Error visiting:", currentUrl);
+      }
     }
 
-    await browser.close();
+    if (browser) await browser.close();
+    if (timeoutId) clearTimeout(timeoutId);
 
-    // --------------------------------------------
-    // STEP 4 → FIND ORPHANED PAGES
-    // --------------------------------------------
-    let orphanedPages = [];
+    const allPages = Array.from(visited);
 
-    if (sitemapFound) {
-      orphanedPages = sitemapPages.filter(p => !linkedPages.has(p));
-    } else {
-      const allPages = [...visited];
-      orphanedPages = allPages.filter(p => !linkedPages.has(p));
-    }
+    const orphanPages = allPages.filter(p => !parentLinks[p] || parentLinks[p].length === 0);
 
-    // --------------------------------------------
-    // STEP 5 → SAVE RESULT
-    // --------------------------------------------
     const report = await OrphanReport.create({
-  userId: req.body.userId,   // <-- ADD HERE
-  websiteUrl,
-  totalPages: sitemapFound ? sitemapPages.length : visited.size,
-  orphanedPages,
-});
-    // --------------------------------------------
-    // STEP 6 → RETURN RESULT
-    // --------------------------------------------
+      userId,
+      websiteUrl: url,
+      totalPages: allPages.length,
+      orphanedPages: orphanPages.map(o => ({ url: o }))
+    });
+
     res.json({
-      message: "Orphaned page scan completed",
-      totalPages: sitemapFound ? sitemapPages.length : visited.size,
-      orphanedPages,
-      reportId: report._id
+      success: true,
+      message: "Orphan pages scanned successfully",
+      totalPages: allPages.length,
+      orphanPages,
+      reportId: report._id,
     });
 
   } catch (error) {
-    console.log("Error:", error);
-    res.status(500).json({ message: "Internal server error", error });
+    // Clean up resources
+    if (browser) {
+      try {
+        await browser.close();
+      } catch (e) {
+        console.log("Error closing browser:", e.message);
+      }
+    }
+    if (timeoutId) clearTimeout(timeoutId);
+
+    // Handle timeout errors
+    if (error.message.includes("timeout")) {
+      return res.status(408).json({ 
+        message: "Check timeout exceeded", 
+        error: error.message 
+      });
+    }
+
+    res.status(500).json({ message: "Server Error", error: error.message });
   }
 };
-

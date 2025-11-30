@@ -1,7 +1,8 @@
 const express = require("express");
 const router = express.Router();
-const { checkOrphanedPages } = require("../controllers/OrphanController");
+const { checkOrphanPages } = require("../controllers/OrphanController");
 
-router.post("/check", checkOrphanedPages);
+// POST /orphan/check
+router.post("/check", checkOrphanPages);
 
 module.exports = router;

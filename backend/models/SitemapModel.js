@@ -1,21 +1,22 @@
 const mongoose = require("mongoose");
 
-const OrphanSchema = new mongoose.Schema({
+const SitemapSchema = new mongoose.Schema({
   userId: {
     type: mongoose.Schema.Types.ObjectId,
+    required: true,
     ref: "User",
   },
   websiteUrl: {
     type: String,
     required: true,
   },
-  totalPages: {
+  urlsFound: {
     type: Number,
     required: true,
   },
-  orphanedPages: [
+  urls: [
     {
-      url: String,
+      type: String,
     }
   ],
   createdAt: {
@@ -24,4 +25,4 @@ const OrphanSchema = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model("OrphanReport", OrphanSchema);
+module.exports = mongoose.model("SitemapReport", SitemapSchema);

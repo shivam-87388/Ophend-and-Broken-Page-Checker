@@ -1,7 +1,7 @@
 const express = require("express");
+const { checkBroken } = require("../controllers/BrokenController");
 const router = express.Router();
-const { checkBrokenLinks } = require("../controllers/BrokenController");
 
-router.post("/check", checkBrokenLinks);
+router.post("/scan", checkBroken);
 
 module.exports = router;

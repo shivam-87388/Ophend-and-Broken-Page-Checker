@@ -1,46 +1,30 @@
 const express = require('express');
-const cors = require('cors');
-const mongoose = require('mongoose');
-
+const app = express();
 const UserRouter = require('./routers/UserRouter');
 const BrokenRouter = require('./routers/BrokenRouter');
 const OrphanRouter = require('./routers/OrphanRouter');
+const SitemapRouter  = require('./routers/SitemapRouter');
+const cors = require('cors');
 
-const app = express();
-const PORT = 5000;
+const port = 5000;
 
-// =============================
-//  Middleware
-// =============================
+// middleware
 app.use(cors({
     origin: ['http://localhost:3000'],
 }));
 app.use(express.json());
 
-// =============================
-//  Database Connection
-// =============================
-mongoose.connect('mongodb://127.0.0.1:27017/major_project')
-    .then(() => console.log('MongoDB Connected Successfully'))
-    .catch(err => console.log('DB Error:', err));
-
-// =============================
-//  Routers
-// =============================
-app.use('/user', UserRouter);
+// Correct routes
 app.use('/broken', BrokenRouter);
 app.use('/orphan', OrphanRouter);
+app.use('/sitemap', SitemapRouter);
 
-// =============================
-//   Default Routes
-// =============================
+// test route
 app.get('/', (req, res) => {
-    res.send('Major Project Backend Running...');
+    res.send('Backend Running');
 });
 
-// =============================
-//   Start Server
-// =============================
-app.listen(PORT, () => {
-    console.log(`Server running at http://localhost:${PORT}`);
+// start server
+app.listen(port, () => {
+    console.log('server started');
 });
