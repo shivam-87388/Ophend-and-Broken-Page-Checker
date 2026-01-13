@@ -12,46 +12,43 @@ const Footer = () => {
         <h2 className="font-bold font-['Libre_Baskerville'] text-center text-white tracking-widest text-xl mb-3">Quick Links</h2>
         <nav className="list-none mb-10 items-center text-center">
           <li>
-            <a href='#' className="text-white font-['Libre_Baskerville'] text-xl font-semibold ">Home</a>
+            <a href='/' className="inline-block transition duration-300 hover:scale-90 text-white font-['Libre_Baskerville'] text-xl font-semibold ">Home</a>
           </li>
           <li>
-            <a href='#' className="text-white font-['Libre_Baskerville'] text-xl font-semibold ">About us</a>
+            <a href='#' className="inline-block transition duration-300 hover:scale-90 text-white font-['Libre_Baskerville'] text-xl font-semibold ">About us</a>
           </li>
           <li>
-            <a href='#' className="text-white font-['Libre_Baskerville'] text-xl font-semibold  ">Orphan Page <br/>Checker</a>
+            <a href='#' className="inline-block transition duration-300 hover:scale-90 text-white font-['Libre_Baskerville'] text-xl font-semibold  ">Orphan Page <br/>Checker</a>
           </li>
           <li>
-            <a href='#' className="text-white font-['Libre_Baskerville'] text-xl font-semibold">Broken Link <br/>Checker</a>
+            <a href='#' className="inline-block transition duration-300 hover:scale-90 text-white font-['Libre_Baskerville'] text-xl font-semibold">Broken Link <br/>Checker</a>
           </li>
         </nav>
       </div>
       <div className="lg:w-1/4 md:w-1/2 w-full px-4">
         <h2 className="font-bold font-['Libre_Baskerville'] text-start text-white tracking-widest text-xl mb-3">Social Links</h2>
-        <nav className="list-none mb-10 text-start">
+        <nav className="list-none text-start">
           <li>
-            <img src="/socialmedia-icon/whatsapp logo.png" alt="whatsapp" className="w-8 h-8 inline-block mr-2"/>
-            <a className="text-white font-['Libre_Baskerville'] text-xl font-semibold">Whatshapp</a>
+            <a href="#" className="inline-flex items-center transition duration-300 hover:scale-90 gap-1.5"><img src="/socialmedia-icon/whatsapp logo.png" alt="Whatshapp" className="w-10"/> <span className="text-white font-['Libre_Baskerville'] text-xl font-semibold">Whatshapp</span></a>
           </li>
           <li>
-            <img src="/socialmedia-icon/instagram logo.png" alt="instagram" className="w-8 h-8 inline-block mr-2"/>
-            <a className="text-white font-['Libre_Baskerville'] text-xl font-semibold">Instagram</a>
+            <a href="#" className="inline-flex items-center transition duration-300 hover:scale-90 gap-1.5"><img src="/socialmedia-icon/facebook logo.png" alt="Facebook" className="w-10"/> <span className="text-white font-['Libre_Baskerville'] text-xl font-semibold">Facebook</span></a>
           </li>
           <li>
-            <img src="/socialmedia-icon/facebook logo.png" alt="facebook" className="w-8 h-8 inline-block mr-2"/>
-            <a className="text-white font-['Libre_Baskerville'] text-xl font-semibold">Facebook</a>
+            <a href="#" className="inline-flex items-center transition duration-300 hover:scale-90 gap-1.5"><img src="/socialmedia-icon/instagram logo.png" alt="Instagram" className="w-10"/> <span className="text-white font-['Libre_Baskerville'] text-xl font-semibold">Instagram</span></a>
           </li>
           <li>
-            <img src="/socialmedia-icon/linkedin logo.png" alt="linkedin" className="w-8 h-8 inline-block mr-2"/>
-            <a className="text-white font-['Libre_Baskerville'] text-xl font-semibold">LinkedIn</a>
+            <a href="#" className="inline-flex items-center transition duration-300 hover:scale-90 gap-1.5"><img src="/socialmedia-icon/linkedin logo.png" alt="LinkedIn" className="w-10"/> <span className="text-white font-['Libre_Baskerville'] text-xl font-semibold">LinkedIn</span></a>
           </li>
           <li>
-            <img src="/socialmedia-icon/github logo.png" alt="linkedin" className="w-8 h-8 inline-block mr-2"/>
-            <a className="text-white font-['Libre_Baskerville'] text-xl font-semibold">Github</a>
+           <a href="#" className="inline-flex items-center transition duration-300 hover:scale-90 gap-1.5"><img src="/socialmedia-icon/github logo.png" alt="Github" className="w-10"/> <span className="text-white font-['Libre_Baskerville'] text-xl font-semibold">Github</span></a>
           </li>
           <li>
-            <img src="/socialmedia-icon/gmail logo.png" alt="mail" className="w-8 h-8 inline-block mr-2"/>
-            <a className="text-white font-['Libre_Baskerville'] text-xl font-semibold">Mail</a>
+             <a href="#" className="inline-flex items-center transition duration-300 hover:scale-90 gap-1.5"><img src="/socialmedia-icon/gmail logo.png" alt="mail" className="w-10"/> <span className="text-white font-['Libre_Baskerville'] text-xl font-semibold">Mail</span></a>
           </li>
+           
+
+          
         </nav>
       </div>
       <div className="lg:w-1/4 md:w-1/2 w-full px-4 flex justify-center items-center"> 
