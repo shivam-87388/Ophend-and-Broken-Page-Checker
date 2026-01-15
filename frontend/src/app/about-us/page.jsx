@@ -6,6 +6,7 @@ const aboutus = () => {
       <section className=""></section>
       <div>
         
+
       </div>
     </main>
   )
