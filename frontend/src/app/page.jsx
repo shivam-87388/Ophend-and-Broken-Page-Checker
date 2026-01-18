@@ -7,10 +7,9 @@ const Homepage = () => {
     {/* herosection */}
     <section className=" mt-4 gap-4 bg-gray-200 p-4 rounded-2xl  ">
       <div className="flex md:flex-row flex-col items-center justify-between  gap-8">
-        <div className="flex-1 ">
-          <div >
-            <h1 className=" text-left text-4xl md:text-5xl font-bold font-['Libre_Baskerville'] text-black">Your Website<br/> Health <span className='text-[#EE0D0C]'>Checker <br/>—Fast &Accurate</span></h1>
-          </div>
+        <div className="flex-1">
+          {/* hero section heading */}
+          <h1 className="text-left text-4xl md:text-5xl font-bold font-['Libre_Baskerville'] text-black">Your Website<br/> Health <span className='text-[#EE0D0C]'>Checker <br/>—Fast &Accurate</span></h1>
           {/* buttons section */}
           <div className="flex gap-2 mt-2 flex-wrap ">
             <a href="#" className="text-center bg-[#EE0D0C] text-white p-2 rounded-lg inline-block  cursor-pointer transition-all duration-300 hover:scale-105 text-xl font-bold font-['Libre_Baskerville']">Check Orphan <br/>Page</a>
@@ -39,7 +38,7 @@ const Homepage = () => {
     <section className="mt-4 bg-gray-200 p-4 rounded-2xl">
       <h2 className="text-2xl md:text-3xl font-bold font-['Libre_Baskerville']">Features Section</h2>
       <h3 className="mt-2 text-2xl md:text-3xl font-semibold font-['Libre_Baskerville']">Powerful Features for Better SEO</h3>
-        <ul className="mt-2 space-y-2">
+        <ul className="mt-2 space-y-2 pl-2">
           <li>
             <h4 className="text-2xl md:text-3xl font-bold font-['Libre_Baskerville']">Orphan Page Checker
             </h4>
