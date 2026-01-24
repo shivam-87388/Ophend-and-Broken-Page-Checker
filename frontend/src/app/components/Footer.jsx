@@ -12,9 +12,9 @@ const Footer = () => {
       </div>
       {/* End Col */}
 
-      <nav aria-label="Footer Navigation" className=" col-span-1">
-        <h4 className="font-bold font-['Libre_Baskerville'] text-center text-xl text-white ">Quick Links</h4>
-         <ul className="mt-2 text-center">
+      <nav aria-label="Footer Navigation" className=" col-span-1 flex flex-col items-center text-center ">
+        <h4 className="font-bold font-['Libre_Baskerville']  text-xl text-white ">Quick Links</h4>
+         <ul className="mt-2 grid gap-3 place-items-center ">
         <li><a href='/' className="transition duration-300 hover:scale-90 text-white font-['Libre_Baskerville'] text-lg font-semibold ">Home</a></li>
         <li><a href='/' className="transition duration-300 hover:scale-90 text-white font-['Libre_Baskerville'] text-lg font-semibold ">About us</a></li>
         <li><a href='/' className="transition duration-300 hover:scale-90 text-white font-['Libre_Baskerville'] text-lg font-semibold ">Orphan Page <br/>Checker</a></li>
@@ -24,9 +24,9 @@ const Footer = () => {
       </nav>
       {/* End Col */}
 
-      <nav aria-label="Footer Navigation" className=" col-span-1">
-        <h4 className="text-white font-bold font-['Libre_Baskerville'] lg:text-center text-xl">Quick Links</h4>
-          <ul className="mt-3 grid">
+      <nav aria-label="Footer Navigation" className="col-span-1 flex flex-col items-center">
+        <h4 className="text-white font-bold font-['Libre_Baskerville']  text-xl">Social Links</h4>
+          <ul className="mt-3 grid  place-items-start">
          <li>
             <a href="#" className="inline-flex items-center transition duration-300 hover:scale-90 gap-1.5"><img src="/socialmedia-icon/whatsapp logo.png" alt="Whatshapp" className="w-10"/> <span className="text-white font-['Libre_Baskerville'] text-lg font-semibold">Whatshapp</span></a>
           </li>
@@ -48,7 +48,7 @@ const Footer = () => {
       </ul>
       </nav>
  {/* Newsletter */}
-      <div className="col-span-full md:col-span-2 lg:col-span-1">
+      <div className="col-span-full md:col-span-2 lg:col-span-1 flex flex-col items-center lg:items-start text-center lg:text-left">
   <h4 className="text-white font-bold font-['Libre_Baskerville'] text-xl  mb-1">
     Newsletter
   </h4>
@@ -68,12 +68,12 @@ const Footer = () => {
       id="newsletter-email"
       required
       placeholder="Enter your email"
-      className="flex-1 px-4 py-2 rounded-md border border-zinc-700 "
+      className="w-full px-4 py-2 rounded-[5px] border border-black/30 focus:outline-none focus:ring-1 focus:ring-black "
     />
 
     <button
       type="submit"
-      className="bg-white text-md font-bold font-['Libre_Baskerville'] cursor-pointer rounded-[5px] p-2"
+      className="bg-white text-black font-bold font-['Libre_Baskerville'] px-4 py-2 rounded-md hover:bg-red-600 hover:text-white transition"
     >
       Subscribe
     </button>
@@ -81,10 +81,14 @@ const Footer = () => {
   </form>
 </div>
 
-
-
-
     </div>
+    
+  </div>
+  {/* privicy policy | terms and conditions */}
+  <div className="bg-white w-full  mx-auto py-4 px-5 flex flex-wrap flex-col sm:flex-row">
+      <p className="text-blue-500 text-md font-bold font-['Libre_Baskerville'] text-center sm:text-left">© Copyright LinkSentinel 2026. All rights reserved.</p>
+      <p className="text-blue-500 text-md font-bold font-['Libre_Baskerville'] text-center sm:text-left">© Copyright LinkSentinel 2026. All rights reserved.
+      </p>
   </div>
 </footer>
 
