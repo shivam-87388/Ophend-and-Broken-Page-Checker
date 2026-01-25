@@ -6,7 +6,7 @@ const Footer = () => {
 <footer className="mt-auto bg-[#ED9D05] rounded-tl-[50px] rounded-tr-[50px]">
   <div className="mt-auto w-full max-w-[85rem] sm:px-6 p-4 mx-auto">
      {/* Grid */}
-    <div className="grid lg:grid-cols-4 gap-6">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
       <div className=" flex justify-center col-span-full lg:col-span-1">
         <img src="/logo/logo.png" alt="logo" className="h-24  w-auto max-w-[180px] object-contain"/>
       </div>
@@ -24,9 +24,9 @@ const Footer = () => {
       </nav>
       {/* End Col */}
 
-      <nav aria-label="Footer Navigation" className="col-span-1 flex flex-col items-center">
-        <h4 className="text-white font-bold font-['Libre_Baskerville']  text-xl">Social Links</h4>
-          <ul className="mt-3 grid  place-items-start">
+      <nav aria-label="Footer Navigation" className="col-span-1 flex flex-col items-center text-center">
+        <h4 className="text-white font-bold font-['Libre_Baskerville'] text-xl ">Social Links</h4>
+          <ul className="mt-3 flex flex-col items-start ">
          <li>
             <a href="#" className="inline-flex items-center transition duration-300 hover:scale-90 gap-1.5"><img src="/socialmedia-icon/whatsapp logo.png" alt="Whatshapp" className="w-10"/> <span className="text-white font-['Libre_Baskerville'] text-lg font-semibold">Whatshapp</span></a>
           </li>
@@ -48,7 +48,7 @@ const Footer = () => {
       </ul>
       </nav>
  {/* Newsletter */}
-      <div className="col-span-full md:col-span-2 lg:col-span-1 flex flex-col items-center lg:items-start text-center lg:text-left">
+      <div className="md:col-span-2 lg:col-span-1 flex flex-col items-center text-center lg:items-start lg:text-left">
   <h4 className="text-white font-bold font-['Libre_Baskerville'] text-xl  mb-1">
     Newsletter
   </h4>
@@ -68,12 +68,12 @@ const Footer = () => {
       id="newsletter-email"
       required
       placeholder="Enter your email"
-      className="w-full px-4 py-2 rounded-[5px] border border-black/30 focus:outline-none focus:ring-1 focus:ring-black "
+      className="w-full px-4 py-2 rounded-[5px] border border-black/30  focus:ring-1 hover:ring-2 hover:ring-white "
     />
 
     <button
       type="submit"
-      className="bg-white text-black font-bold font-['Libre_Baskerville'] px-4 py-2 rounded-md hover:bg-red-600 hover:text-white transition"
+      className="bg-white text-black font-bold font-['Libre_Baskerville'] px-4 py-2 rounded-md cursor-pointer hover:bg-red-600 hover:text-white transition"
     >
       Subscribe
     </button>
@@ -85,10 +85,14 @@ const Footer = () => {
     
   </div>
   {/* privicy policy | terms and conditions */}
-  <div className="bg-white w-full  mx-auto py-4 px-5 flex flex-wrap flex-col sm:flex-row">
-      <p className="text-blue-500 text-md font-bold font-['Libre_Baskerville'] text-center sm:text-left">© Copyright LinkSentinel 2026. All rights reserved.</p>
-      <p className="text-blue-500 text-md font-bold font-['Libre_Baskerville'] text-center sm:text-left">© Copyright LinkSentinel 2026. All rights reserved.
-      </p>
+  <div className="flex justify-between items-center bg-white w-full  mx-auto py-2 px-5 flex-wrap flex-col sm:flex-row md:gap-2">
+      <p className="text-[#525252] text-md font-bold font-['Libre_Baskerville'] text-center sm:text-left">© Copyright LinkSentinel 2026. All rights reserved.</p>
+      <div className="flex lg:gap-8 gap-2 pt-2 lg:pt-0 ">
+         <p className="text-[#525252] text-md font-bold font-['Libre_Baskerville'] text-center sm:text-left">Terms & Condition</p>
+      <p className="text-[#525252] text-md font-bold font-['Libre_Baskerville'] text-center sm:text-left">Privacy Policy</p>
+      </div>
+     
+      
   </div>
 </footer>
 
