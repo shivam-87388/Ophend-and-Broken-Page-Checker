@@ -1,57 +1,105 @@
 import React from 'react'
+import Link from 'next/link';
 
 const Blog = () => {
+  const blogs = [
+    // blog 1
+    {
+      id: 1,
+      title:"Understanding Orphan Pages and Broken Pages: The Ultimate SEO Guide",
+      desc:"In today’s digital age, having a website is just the first step. To rank well on search engines like Google, a website must be technically sound, user-friendly, and SEO optimized. One of the most overlooked technical SEO issues is the presence of orphan pages and broken pages.",
+      picture:'https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?q=80&w=560&auto=format&fit=crop'
+    },
+     //  blog 2
+     {
+       id: 2,
+       title:"What Are Orphan Pages?",
+       desc:"desc2",
+       picture:'https://images.unsplash.com/photo-1575052814086-f385e2e2ad1b?q=80&w=560&auto=format&fit=crop'
+      },
+      // blog 3
+     {
+       id: 3,
+       title:"title 3",
+       desc:"desc3",
+       picture:'https://images.unsplash.com/photo-1575052814086-f385e2e2ad1b?q=80&w=560&auto=format&fit=crop'
+      },
+      // blog 4
+     {
+       id: 4,
+       title:"title 4",
+       desc:"desc4",
+       picture:'https://images.unsplash.com/photo-1575052814086-f385e2e2ad1b?q=80&w=560&auto=format&fit=crop'
+      },
+      // blog 5 
+     {
+       id: 5,
+       title:"title 5",
+       desc:"desc5",
+       picture:'https://images.unsplash.com/photo-1575052814086-f385e2e2ad1b?q=80&w=560&auto=format&fit=crop'
+      },
+      // blog 6
+     {
+       id: 6,
+       title:"title 6",
+       desc:"desc6",
+       picture:'https://images.unsplash.com/photo-1575052814086-f385e2e2ad1b?q=80&w=560&auto=format&fit=crop'
+      },
+      
+      
+       
+  ]
   return (
-    <div>
-        {/* Card Row */}
-<div className="py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto overflow-x-auto">
-  <div className="flex gap-8 lg:gap-12 min-w-max">
+    <main className='m-8'>
+      <h1 className="p-2 mb-6 text-5xl text-center font-['Libre_Baskerville']">Blog
+        <hr className=""></hr>
+      </h1>
+      <section className='p-4 bg-gray-200 rounded-2xl'>
+        <div className="py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto overflow-x-auto">
+  <div className="grid grid-cols-3 gap-8 min-w-max ">
 
-    {/* Card 1 */}
-    <a className="group flex flex-col w-80 focus:outline-hidden flex-shrink-0" href="#">
-      <div className="aspect-[16/12] overflow-hidden bg-gray-100 rounded-2xl dark:bg-neutral-800">
+{ blogs.map(blog => (
+  <article key={blog.id} className="flex justify-center  flex-shrink-0 p-4 bg-white  rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+    <Link
+      href={`/blog/${blog.id}`}
+      className="group flex flex-col w-80 focus:outline-hidden ">
+      {/* Image */}
+      <div className="aspect-[16/12] overflow-hidden bg-gray-100 rounded-2xl">
         <img
-          className="group-hover:scale-105 transition-transform duration-500 ease-in-out object-cover w-full h-full rounded-2xl"
-          src="https://images.unsplash.com/photo-1575052814086-f385e2e2ad1b?q=80&w=560&auto=format&fit=crop"
-          alt="Blog Image"
+          src={blog.picture}
+         alt="image"
+          
+          className="group-hover:scale-105 transition-transform duration-500 ease-in-out
+          object-cover w-full h-full rounded-2xl"
         />
       </div>
-      <div className="pt-4">
-        <h3 className="relative inline-block font-medium text-lg text-black dark:text-white before:absolute before:bottom-0.5 before:left-0 before:-z-10 before:w-full before:h-1 before:bg-lime-400 before:transition-transform before:origin-left before:scale-x-0 group-hover:before:scale-x-100">
-          eYoga
-        </h3>
-        <p className="mt-1 text-gray-600 dark:text-neutral-400">
-          A revamped and dynamic approach to yoga analytics
-        </p>
-      </div>
-    </a>
 
-    {/* Card 2 */}
-    <a className="group flex flex-col w-80 focus:outline-hidden flex-shrink-0" href="#">
-      <div className="aspect-[16/12] overflow-hidden bg-gray-100 rounded-2xl dark:bg-neutral-800">
-        <img
-          className="group-hover:scale-105 transition-transform duration-500 ease-in-out object-cover w-full h-full rounded-2xl"
-          src="https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?q=80&w=560&auto=format&fit=crop"
-          alt="Blog Image"
-        />
-      </div>
-      <div className="pt-4">
-        <h3 className="relative inline-block font-medium text-lg text-black dark:text-white before:absolute before:bottom-0.5 before:left-0 before:-z-10 before:w-full before:h-1 before:bg-lime-400 before:transition-transform before:origin-left before:scale-x-0 group-hover:before:scale-x-100">
-          Nike React
-        </h3>
-        <p className="mt-1 text-gray-600 dark:text-neutral-400">
-          Rewriting sport's playbook for billions of athletes
-        </p>
-      </div>
-    </a>
+      {/* Content */}
+      <div className="pt-4 ">
+        <h2 className="font-[libre-baskerville] font-bold text-xl text-black dark:text-white  ">
+          {blog.title}
+        </h2>
 
-    {/* Add more cards here ... */}
+        
+          <p className="mt-1 text-gray-600 dark:text-neutral-400 line-clamp-3">
+            {blog.desc}
+          </p>
+        
+      </div>
+    </Link>
+  </article>
+))}
+
 
   </div>
 </div>
-{/* End Card Row */}
+        
+         
+      </section>
 
-    </div>
+    </main>
+    
+   
   )
 }
 

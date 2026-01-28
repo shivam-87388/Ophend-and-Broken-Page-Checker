@@ -15,18 +15,18 @@ const Footer = () => {
       <nav aria-label="Footer Navigation" className=" col-span-1 flex flex-col items-center text-center ">
         <h4 className="font-bold font-['Libre_Baskerville']  text-xl text-white ">Quick Links</h4>
          <ul className="mt-2 grid gap-3 place-items-center ">
-        <li><a href='/' className="transition duration-300 hover:scale-90 text-white font-['Libre_Baskerville'] text-lg font-semibold ">Home</a></li>
-        <li><a href='/' className="transition duration-300 hover:scale-90 text-white font-['Libre_Baskerville'] text-lg font-semibold ">About us</a></li>
-        <li><a href='/' className="transition duration-300 hover:scale-90 text-white font-['Libre_Baskerville'] text-lg font-semibold ">Orphan Page <br/>Checker</a></li>
-        <li><a href='/' className="transition duration-300 hover:scale-90 text-white font-['Libre_Baskerville'] text-lg font-semibold ">Broken Link <br/>Checker</a></li>
-        <li><a href='/' className="transition duration-300 hover:scale-90 text-white font-['Libre_Baskerville'] text-lg font-semibold ">Blog</a></li>
+        <li><a href='/' className="inline-block text-white font-['Libre_Baskerville'] text-lg font-semibold transition-transform transform hover:scale-95">Home</a></li>
+        <li><a href='/about-us' className="inline-block text-white font-['Libre_Baskerville'] text-lg font-semibold transition-transform transform hover:scale-95">About us</a></li>
+        <li><a href='/orphan-page-checker' className="inline-block text-white font-['Libre_Baskerville'] text-lg font-semibold transition-transform transform hover:scale-95">Orphan Page <br/>Checker</a></li>
+        <li><a href='/broken-link-checker' className="inline-block text-white font-['Libre_Baskerville'] text-lg font-semibold transition-transform transform hover:scale-95">Broken Link <br/>Checker</a></li>
+        <li><a href='/blog' className="inline-block text-white font-['Libre_Baskerville'] text-lg font-semibold transition-transform transform hover:scale-95">Blog</a></li>
       </ul>
       </nav>
       {/* End Col */}
 
       <nav aria-label="Footer Navigation" className="col-span-1 flex flex-col items-center text-center">
         <h4 className="text-white font-bold font-['Libre_Baskerville'] text-xl ">Social Links</h4>
-          <ul className="mt-3 flex flex-col items-start ">
+          <ul className="mt-2 flex flex-col items-start ">
          <li>
             <a href="#" className="inline-flex items-center transition duration-300 hover:scale-90 gap-1.5"><img src="/socialmedia-icon/whatsapp logo.png" alt="Whatshapp" className="w-10"/> <span className="text-white font-['Libre_Baskerville'] text-lg font-semibold">Whatshapp</span></a>
           </li>
@@ -87,7 +87,7 @@ const Footer = () => {
   {/* privicy policy | terms and conditions */}
   <div className="flex justify-between items-center bg-white w-full  mx-auto py-2 px-5 flex-wrap flex-col sm:flex-row md:gap-2">
       <p className="text-[#525252] text-md font-bold font-['Libre_Baskerville'] text-center sm:text-left">© Copyright LinkSentinel 2026. All rights reserved.</p>
-      <div className="flex lg:gap-8 gap-2 pt-2 lg:pt-0 ">
+      <div className="flex lg:gap-8 gap-2">
          <p className="text-[#525252] text-md font-bold font-['Libre_Baskerville'] text-center sm:text-left">Terms & Condition</p>
       <p className="text-[#525252] text-md font-bold font-['Libre_Baskerville'] text-center sm:text-left">Privacy Policy</p>
       </div>

@@ -4,9 +4,9 @@ import React from 'react'
 const aboutus = () => {
   return (
     <main className='m-8'>
-      <div className="p-2 mb-6 text-5xl text-center font-['Libre_Baskerville']">About-us
+      <h1 className="p-2 mb-6 text-5xl text-center font-['Libre_Baskerville']">About-us
         <hr className=""></hr>
-      </div>
+      </h1>
       {/* pargrapgh section */}
       <section className="p-4 bg-gray-200 rounded-2xl">
         <div className="space-y-1.5">
