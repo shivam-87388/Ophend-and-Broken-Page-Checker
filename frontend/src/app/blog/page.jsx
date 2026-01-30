@@ -7,21 +7,21 @@ const Blog = () => {
     {
       slug:"understanding-orphan-pages-and-broken-pages-the-ultimate-seo-guide",
       title:"Understanding Orphan Pages and Broken Pages: The Ultimate SEO Guide",
-      shortDesc:"In today’s digital age, having a website is just the first step. To rank well on search engines like Google, a website must be technically sound, user-friendly, and SEO optimized. One of the most overlooked technical SEO issues is the presence of orphan pages and broken pages.",
+      shortDesc:"A complete SEO guide explaining orphan pages and broken pages, how they affect rankings and traffic, and how fixing them improves website performance.",
       picture:'/blogpicture/Gemini_Generated_Image_49stdm49stdm49st.png'
     },
      //  blog 2
      {
        slug:"what-are-orphan-pages",
        title:"What Are Orphan Pages?",
-       shortDesc:"desc2",
+       shortDesc:"Orphan pages are unlinked website pages that remain invisible to users and search engines, negatively affecting SEO performance.",
        picture:'/blogpicture/Gemini_Generated_Image_b78evgb78evgb78e.png'
       },
       // blog 3
      {
        slug:"What-Are-Broken-Pages",
        title:"What Are Broken Pages?",
-       shortDesc:"A broken page, also known as a 404 error page, is a webpage that cannot be accessed because the URL is incorrect, the page has been deleted, or there is a server issue. When users or search engines try to visit a broken page, they receive an error message indicating that the page is not found.",
+       shortDesc:"Broken pages return error codes such as 404 or 500, wasting crawl budget, losing backlinks, and lowering search rankings.",
        picture:'/blogpicture/Gemini_Generated_Image_ee5zz2ee5zz2ee5z.png'
       },
       // blog 4

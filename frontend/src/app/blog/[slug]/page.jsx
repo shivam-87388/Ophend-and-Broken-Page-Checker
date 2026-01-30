@@ -5,7 +5,12 @@ const page = ({params}) => {
   const slug = params.slug;
   const blog = blogs.find((blog)=> blog.slug === slug);
   if(!blog){
-    return <h1 className='text-5xl text-center'>Blog not found</h1>
+    return (
+      <main className='m-8 bg-gray-200 rounded-2xl p-4'>
+        <img src="/page-not-found/page not found.png" alt="Page not found" className="mx-auto w-96 h-96 object-contain"/>
+        <h1 className="text-5xl text-center font-['Libre_Baskerville']">Blog not found</h1>
+      </main>
+    )
   }
   return (
     <main className='m-8 bg-gray-200 rounded-2xl p-4'>
