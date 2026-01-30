@@ -3,48 +3,48 @@ import Link from 'next/link';
 
 const Blog = () => {
   const blogs = [
-    // blog 1
     {
-      slug:"understanding-orphan-pages-and-broken-pages-the-ultimate-seo-guide",
-      title:"Understanding Orphan Pages and Broken Pages: The Ultimate SEO Guide",
-      shortDesc:"A complete SEO guide explaining orphan pages and broken pages, how they affect rankings and traffic, and how fixing them improves website performance.",
-      picture:'/blogpicture/Gemini_Generated_Image_49stdm49stdm49st.png'
-    },
-     //  blog 2
-     {
-       slug:"what-are-orphan-pages",
-       title:"What Are Orphan Pages?",
-       shortDesc:"Orphan pages are unlinked website pages that remain invisible to users and search engines, negatively affecting SEO performance.",
-       picture:'/blogpicture/Gemini_Generated_Image_b78evgb78evgb78e.png'
-      },
-      // blog 3
-     {
-       slug:"What-Are-Broken-Pages",
-       title:"What Are Broken Pages?",
-       shortDesc:"Broken pages return error codes such as 404 or 500, wasting crawl budget, losing backlinks, and lowering search rankings.",
-       picture:'/blogpicture/Gemini_Generated_Image_ee5zz2ee5zz2ee5z.png'
-      },
-      // blog 4
-     {
-       slug:"How to Detect Orphan and Broken Pages",
-       title:"How to Detect Orphan and Broken Pages",
-       shortDesc:"Learn how to identify orphan and broken pages on your website using tools like Google Search Console, Screaming Frog, and manual checks.",
-       picture:'/blogpicture/Gemini_Generated_Image_t7fwdlt7fwdlt7fw.png'
-      },
-      // blog 5 
-     {
-       slug:"Best-Practices-to-Prevent-Orphan-&-Broken-Pages",
-       title:"Best Practices to Prevent Orphan & Broken Pages",
-       shortDesc:"To prevent orphan and broken pages, ensure all internal links are properly maintained, use a reliable CMS, and regularly audit your website for broken links.",
-       picture:'/blogpicture/Gemini_Generated_Image_49stdm49stdm49st.png'
-      },
-      // blog 6
-     {
-       slug:"How-to-Fix-Orphan-Pages-and-Broken-Pages",
-       title:"How to Fix Orphan Pages and Broken Pages",
-       shortDesc:"Learn how to fix orphan and broken pages on your website using tools like Google Search Console, Screaming Frog, and manual checks.",
-       picture:'/blogpicture/Gemini_Generated_Image_49stdm49stdm49st.png'
-      },
+       slug:"understanding-orphan-pages-and-broken-pages-the-ultimate-seo-guide",
+        title:"Understanding Orphan Pages and Broken Pages: The Ultimate SEO Guide",
+        shortDesc:"Learn what orphan pages and broken pages are, how they impact SEO performance, and practical ways to identify, fix, and prevent them for a healthier website.",
+        picture:"/blogpicture/Gemini_Generated_Image_49stdm49stdm49st.png",
+},
+// blog#2:
+{
+        slug:"what-are-orphan-pages",
+        title:"What Are Orphan Pages?",
+        shortDesc:"Orphan pages are unlinked website pages that remain invisible to users and search engines, negatively affecting SEO performance.",
+        picture:"/blogpicture/Gemini_Generated_Image_b78evgb78evgb78e.png",
+},
+// blog#3:
+{
+        slug:"what-are-broken-pages",
+        title:"What Are Broken Pages?",
+        shortDesc:"A broken page, also known as a 404 error page, is a webpage that cannot be accessed because the URL is incorrect, the page has been deleted, or there is a server issue. When users or search engines try to visit a broken page, they receive an error message indicating that the page is not found.",
+        picture:"/blogpicture/Gemini_Generated_Image_ee5zz2ee5zz2ee5z.png",
+},
+// blog#4:
+{
+        slug:"how-to-detect-orphan-and-broken-pages",
+        title:"How to Detect Orphan and Broken Pages",
+        shortDesc:"Learn how to identify orphan and broken pages on your website using tools like Google Search Console, Screaming Frog, and manual checks.",
+        picture:"/blogpicture/Gemini_Generated_Image_t7fwdlt7fwdlt7fw.png",
+},
+// blog#5:
+{
+        slug:"best-practices-to-prevent-orphan-and-broken-pages",
+        title:"Best Practices to Prevent Orphan & Broken Pages",
+        shortDesc:"Learn practical SEO best practices to prevent orphan and broken pages, improve crawlability, and maintain a healthy website structure.",
+        picture:"/blogpicture/Gemini_Generated_Image_6rdvuk6rdvuk6rdv.png",
+},
+// blog#6:
+{
+        slug:"how-to-fix-orphan-pages-and-broken-pages",
+        title:"How to Fix Orphan Pages and Broken Pages",
+        shortDesc:"Learn how to identify and fix orphan pages and broken pages to improve SEO, crawlability, and user experience.",
+        picture:"/blogpicture/Gemini_Generated_Image_netfnunetfnunetf.png",
+},
+     
       
       
        
