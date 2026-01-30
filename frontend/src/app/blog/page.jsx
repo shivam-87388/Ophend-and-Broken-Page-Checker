@@ -56,21 +56,20 @@ const Blog = () => {
       </h1>
       <section className='p-4 bg-gray-200 rounded-2xl'>
         <div className="py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto overflow-x-auto">
-  <div className="grid grid-cols-3 gap-8 min-w-max ">
+  <div className="grid lg:grid-cols-3  gap-8 sm:grid-cols-1 md:grid-cols-2">
 
 { blogs.map(blog => (
-  <article key={blog.slug} className="flex justify-center flex-shrink-0 py-4 bg-white  rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+  <article key={blog.slug} className="flex justify-center flex-shrink-0 p-4 bg-white  rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
     <Link
       href={`/blog/${blog.slug}`}
-      className="group flex flex-col w-80 focus:outline-hidden ">
+      className="group flex flex-col w-full max-w-sm">
       {/* Image */}
-      <div className="aspect-[16/12] overflow-hidden bg-gray-100 rounded-2xl">
+      <div className="aspect-[16/12] overflow-hidden rounded-2xl">
         <img
           src={blog.picture}
          alt="image"
           
-          className="group-hover:scale-105 transition-transform duration-500 ease-in-out
-          object-fill w-full h-full rounded-2xl"
+          className="group-hover:scale-105 transition-transform duration-500 ease-in-out object-fill w-full h-full rounded-2xl"
         />
       </div>
 
