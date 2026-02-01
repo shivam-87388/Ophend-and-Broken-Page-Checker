@@ -1,9 +1,12 @@
 import React from 'react'
 
-const page = () => {
+const orphanpagechecker = () => {
   return (
-    <div>page</div>
+    <main className="m-8">
+      <section className="p-4"></section>
+
+    </main>
   )
 }
 
-export default page
+export default pag

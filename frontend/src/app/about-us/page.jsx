@@ -4,9 +4,9 @@ import React from 'react'
 const aboutus = () => {
   return (
     <main className='m-8'>
-      <h1 className="p-2 mb-6 text-5xl text-center font-['Libre_Baskerville']">About-us
-        <hr className=""></hr>
+      <h1 className="p-2 text-5xl text-center font-['Libre_Baskerville']">About-us
       </h1>
+      <hr className="border-t-2 mb-4"></hr>
       {/* pargrapgh section */}
       <section className="p-4 bg-gray-200 rounded-2xl">
         <div className="space-y-1.5">
@@ -19,7 +19,7 @@ const aboutus = () => {
       <section className="mt-4 p-4 bg-gray-200 rounded-2xl">
         <h2 className="text-2xl md:text-3xl font-bold font-['Libre_Baskerville']">What Our Tool Offers?</h2>
         <p className="text-xl md:text-2xl font-['Rosario']">Our SEO tool is built to analyze websites efficiently and provide actionable results, including:</p>
-        <ol className="list-decimal pl-6 mt-2 gap-2">
+        <ol className="list-decimal pl-6 mt-2">
           <li className="text-xl md:text-2xl font-['Rosario']">Detection of hidden website issues.</li> 
           <li className="text-xl md:text-2xl font-['Rosario']">Analysis of internal structure and crawlability.</li>
           <li className="text-xl md:text-2xl font-['Rosario']">Identification of SEO-impacting errors.</li>

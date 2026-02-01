@@ -16,8 +16,8 @@ const Navbar = () => {
         </nav>
         {/* login/signup button */}
         <div className="flex flex-col lg:flex-row gap-3.5">
-          <a href='/createaccount' className="inline-flex text-center items-center justify-center  hover:bg-amber-500 rounded-lg hover:outline-none outline-1 outline-offset-[-1px] outline-white px-5 py-2 text-white text-xl font-bold font-['Libre_Baskerville']"><IconUsers size={30} />Signup</a>
-          <a href='/signin' className="inline-flex text-center items-center justify-center  hover:bg-amber-500 rounded-lg hover:outline-none outline-1 outline-offset-[-1px] outline-white px-5 py-2 gap-1 text-white text-xl font-bold font-['Libre_Baskerville']"><IconUserCircle className="" size={30} />Login
+          <a href='/createaccount' className="inline-flex text-center items-center justify-center hover:bg-red-600 bg-white rounded-lg  px-5 py-2 text-black hover:text-white text-xl font-bold font-['Libre_Baskerville']"><IconUsers size={30} />Signup</a>
+          <a href='/signin' className="inline-flex text-center items-center justify-center hover:bg-red-600 rounded-lg bg-white hover:text-white  px-5 py-2 gap-1 text-black text-xl font-bold font-['Libre_Baskerville']"><IconUserCircle className="" size={30} />Login
           </a>
         </div>
       </div>

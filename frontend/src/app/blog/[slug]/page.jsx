@@ -22,7 +22,7 @@ const page = ({params}) => {
       </div>
       
     
-      <p className="text-2xl font-['Rosario']">{blog.description}</p>
+      <p className="text-2xl font-['Rosario'] whitespace-pre-line">{blog.description}</p>
     </main>
   ); 
 
