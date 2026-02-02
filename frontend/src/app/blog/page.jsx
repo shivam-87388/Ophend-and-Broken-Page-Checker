@@ -53,7 +53,7 @@ const Blog = () => {
     <main className='m-8'>
       <h1 className="p-2 text-5xl text-center font-['Libre_Baskerville']">Blogs
       </h1>
-       <hr className="border-t-2 mb-4"></hr>
+       <hr className="border-t-2 border-gray-400 mb-6"></hr>
       <section className='p-4 bg-gray-200 rounded-2xl'>
         <div className="py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto overflow-x-auto">
   <div className="grid lg:grid-cols-3  gap-8 sm:grid-cols-1 md:grid-cols-2">

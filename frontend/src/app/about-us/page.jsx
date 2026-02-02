@@ -6,7 +6,7 @@ const aboutus = () => {
     <main className='m-8'>
       <h1 className="p-2 text-5xl text-center font-['Libre_Baskerville']">About-us
       </h1>
-      <hr className="border-t-2 mb-4"></hr>
+      <hr className="border-t-2 border-gray-400 mb-6"></hr>
       {/* pargrapgh section */}
       <section className="p-4 bg-gray-100 rounded-2xl">
         <div className="space-y-1.5">
