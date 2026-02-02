@@ -1,5 +1,7 @@
 import React from 'react'
 import { blogs } from '../data'
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 
 const page = ({params}) => {
   const slug = params.slug;
@@ -20,9 +22,17 @@ const page = ({params}) => {
         <img src={blog.picture} alt={blog.title} className='object-fill w-full lg:mx-6 lg:w-1/2 rounded-xl h-72 lg:h-96 '/>
 
       </div>
-      
+     <div className=''>
+      <ReactMarkdown  remarkPlugins={[remarkGfm]}
+    components={{
+      p: ({children}) => (<p className="text-2xl font-['Rosario'] mb-2">{children}</p>),
+      h2: ({children}) => (<h2 className="pt-2 text-2xl font-bold font-['Rosario'] ">{children}</h2>),
+      li: ({children}) => (<li className="text-2xl font-['Rosario'] ">{children}</li>),
+      ol: ({children}) => (<ol className="list-decimal pl-6 mt-2 ">{children}</ol>),
+      ul: ({children}) => (<ul className="list-disc pl-6 mt-2">{children}</ul>),
+      }}>{blog.description}</ReactMarkdown>
+      </div> 
     
-      <p className="text-2xl font-['Rosario'] whitespace-pre-line">{blog.description}</p>
     </main>
   ); 
 
