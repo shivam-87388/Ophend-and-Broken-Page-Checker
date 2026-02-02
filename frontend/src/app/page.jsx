@@ -38,7 +38,7 @@ Health Checker
       </a>
       <a
         href="#"
-        className="inline-flex items-center justify-center px-5 py-3 lg:mt-0 mt-2 font-['Libre_Baskerville'] text-xl font-medium text-center text-black border-2 border-gray-500 rounded-lg hover:bg-gray-200 transition-all duration-200 "
+        className="inline-flex items-center justify-center px-5 py-3 lg:mt-0 mt-2 font-['Libre_Baskerville'] text-xl font-medium text-center text-black border-2 border-gray-400 rounded-lg hover:bg-gray-200 transition-all duration-200 "
       >
         Orphan page
         <br/>
