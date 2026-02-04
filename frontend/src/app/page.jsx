@@ -5,7 +5,7 @@ const Homepage = () => {
   return (
   <main className="m-8">
     {/* herosection */}
-    <section className="bg-gray-100  rounded-2xl">
+    <section className="bg-gray-100  rounded-2xl shadow-md">
   <div className="grid max-w-screen-xl px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-8 lg:grid-cols-12">
     <div className="mr-auto place-self-center lg:col-span-7">
       <h1 className="max-w-2xl mb-4  font-extrabold tracking-tight font-['Libre_Baskerville'] leading-none lg:text-6xl text-5xl   dark:text-white">
