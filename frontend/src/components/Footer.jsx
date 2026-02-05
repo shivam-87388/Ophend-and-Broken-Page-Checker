@@ -68,7 +68,7 @@ const Footer = () => {
       id="newsletter-email"
       required
       placeholder="Enter your email"
-      className="w-full px-4 py-2 rounded-[5px] border border-black/30  focus:ring-1 hover:ring-2 hover:ring-white "
+      className="w-full px-4 py-2 rounded-[5px] border border-black/30 outline-none  focus:ring-1 hover:ring-2 "
     />
 
     <button
