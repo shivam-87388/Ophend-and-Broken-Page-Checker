@@ -75,7 +75,7 @@ const Blog = () => {
 
       {/* Content */}
       <div className="pt-4 ">
-        <h2 className="font-[libre-baskerville] font-bold text-xl text-black dark:text-white  ">
+        <h2 className="text-xl font-semibold md:text-2xl font-['Libre_Baskerville']">
           {blog.title}
         </h2>
 

@@ -73,15 +73,15 @@ const page = ({params}) => {
         <img src={blog.picture} alt={blog.title} className='object-fill w-full lg:mx-6 lg:w-1/2 rounded-xl h-72 lg:h-96 '/>
 
       </div>
-      <h1 className="p-2 mb-6 text-4xl text-start font-semibold font-['Libre_Baskerville']">{blog.title}</h1>
+      <h1 className="text-2xl md:text-3xl font-bold font-['Libre_Baskerville']">{blog.title}</h1>
      
       <ReactMarkdown  remarkPlugins={[remarkGfm]}
     components={{
-      p: ({children}) => (<p className="text-2xl font-['Rosario'] mb-2">{children}</p>),
-      h2: ({children}) => (<h2 className="pt-2 text-2xl font-bold font-['Rosario'] ">{children}</h2>),
-      li: ({children}) => (<li className="text-2xl font-['Rosario'] ">{children}</li>),
-      ol: ({children}) => (<ol className="list-decimal pl-6 mt-2 ">{children}</ol>),
-      ul: ({children}) => (<ul className="list-disc pl-6 mt-2">{children}</ul>),
+      p: ({children}) => (<p className="text-xl mt-2.5 md:text-2xl font-['Rosario']">{children}</p>),
+      h2: ({children}) => (<h2 className="text-xl font-semibold md:text-2xl font-['Libre_Baskerville']">{children}</h2>),
+      li: ({children}) => (<li className="text-xl md:text-2xl font-['Rosario']">{children}</li>),
+      ol: ({children}) => (<ol className="list-decimal pl-6 mt-2">{children}</ol>),
+      ul: ({children}) => (<ul className="mt-2 space-y-2 pl-2">{children}</ul>),
       }}>{blog.description}</ReactMarkdown>
       
     

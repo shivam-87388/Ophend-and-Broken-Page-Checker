@@ -56,29 +56,28 @@ Health Checker
 </section>
     {/* hero section close */}
     {/* paragraph section */}
-    <div className='mt-4 p-4'>
-      <p className="text-left text-black text-2xl md:text-3xl font-['Rosario']">Maintain your website’s quality with smart scanning tools designed for speed, accuracy, and simplicity. Your website deserves to stay clean, organized, and error-free.</p>
-    </div>
-    <hr className="border-t-2 border-gray-400"></hr>
+      <p className="text-xl md:text-2xl mt-2 p-4 font-['Rosario']">Maintain your website’s quality with smart scanning tools designed for speed, accuracy, and simplicity. Your website deserves to stay clean, organized, and error-free.</p>
+    
+    <hr className="border-t-2 border-gray-300 "></hr>
     {/* Features section */}
     <section className="mt-4 bg-gray-100 p-4 rounded-2xl">
       <h2 className="text-2xl md:text-3xl font-bold font-['Libre_Baskerville']">Features Section</h2>
-      <h3 className="mt-2 text-2xl md:text-3xl font-semibold font-['Libre_Baskerville']">Powerful Features for Better SEO</h3>
+      <h3 className="text-xl font-semibold md:text-2xl font-['Libre_Baskerville']">Powerful Features for Better SEO</h3>
         <ul className="mt-2 space-y-2 pl-2">
           <li>
-            <h4 className="text-2xl md:text-3xl font-bold font-['Libre_Baskerville']">Orphan Page Checker
+            <h4 className="text-xl font-semibold md:text-2xl font-['Libre_Baskerville']">Orphan Page Checker
             </h4>
             <p className="text-xl md:text-2xl font-['Rosario']">Find pages that exist on your website but are not linked internally, making them invisible to users and search engines.
             </p>
           </li>
           <li>
-            <h4 className="text-2xl md:text-3xl font-bold font-['Libre_Baskerville']">Broken Link Checker
+            <h4 className="text-xl font-semibold md:text-2xl font-['Libre_Baskerville']">Broken Link Checker
             </h4>
             <p className="text-xl md:text-2xl font-['Rosario']">Detect broken pages and links that return errors such as 404 or server issues.
             </p>
           </li>
           <li>
-            <h4 className="text-2xl md:text-3xl font-bold font-['Libre_Baskerville']">Fast Website Scanning
+            <h4 className="text-xl font-semibold md:text-2xl font-['Libre_Baskerville']">Fast Website Scanning
             </h4>
             <p className="text-xl md:text-2xl font-['Rosario']">Get accurate results within seconds using our optimized scanning system.
             </p>
@@ -109,4 +108,4 @@ Health Checker
   )
 }
 
-export default Homepage
+export default Homepage;
