@@ -17,7 +17,7 @@ Health Checker
        Scan your website for orphaned pages and broken links with our fast and accurate tools.
       </p>
       <a
-        href="#"
+        href="/broken-link-checker"
         className="inline-flex items-center justify-center px-5 py-3 mr-3 text-xl font-['Libre_Baskerville'] font-medium text-center text-black rounded-lg border-2 border-red-600 hover:bg-red-600 hover:text-white hover:border-transparent hover:ring-2 hover:ring-red-600 hover:ring-offset-2 transition-all duration-200"
       > 
         Broken Link
@@ -37,7 +37,7 @@ Health Checker
         </svg>
       </a>
       <a
-        href="#"
+        href="/orphan-page-checker"
         className="inline-flex items-center justify-center px-5 py-3 lg:mt-0 mt-2 font-['Libre_Baskerville'] text-xl font-medium text-center text-black border-2 border-gray-400 rounded-lg hover:bg-gray-200 transition-all duration-200 "
       >
         Orphan page
