@@ -9,15 +9,16 @@ const generateToken = (id) => {
 };
 
 exports.registerUser = async (req, res) => {
-  const { name, email, password } = req.body;
+  const { firstName, lastName, email, password } = req.body;
 
   const exists = await User.findOne({ email });
-  if (exists) return res.status(400).json({ message: "User exists" });
+  if (exists) return res.status(400).json({ message: "User already exists" });
 
   const hashed = await bcrypt.hash(password, 10);
 
   const user = await User.create({
-    name,
+    firstName,
+    lastName,
     email,
     password: hashed,
   });
@@ -30,6 +31,10 @@ exports.registerUser = async (req, res) => {
 
 exports.loginUser = async (req, res) => {
   const { email, password } = req.body;
+
+  if (!email || !password) {
+  return res.status(400).json({ message: "Please fill all fields" });
+}
 
   const user = await User.findOne({ email });
 

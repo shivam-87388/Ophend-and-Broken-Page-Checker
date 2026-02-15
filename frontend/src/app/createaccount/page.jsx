@@ -31,13 +31,19 @@ const CreateAccount = () => {
     }),
     onSubmit: (values) => {
       // Send form data to backend
-      axios.post('http://localhost:5000/user/register', values)
+      axios.post('http://localhost:5000/api/users/register', {
+  firstName: values.firstName,
+  lastName: values.lastName,
+  email: values.email,
+  password: values.password
+})
+
         .then((response) => {
           // Backend responds successfully
-          if (response.status === 200) { // account created
+          if (response.status === 201 || response.status === 200) { // account created
             toast.success(response?.data?.message || "Account created successfully");
           } else {
-            // Any unexpected status
+           
             toast.error(response?.data?.message || "Error creating account");
           }
         })

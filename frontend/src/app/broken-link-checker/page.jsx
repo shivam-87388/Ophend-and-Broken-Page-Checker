@@ -1,11 +1,60 @@
 'use client'
-import React from 'react'
-import { Link } from 'lucide-react'
+import { useState, useEffect } from 'react' 
+import { useRouter } from 'next/navigation' 
+import { Link as LinkIcon } from 'lucide-react' 
+import axios from 'axios'
 import '@fortawesome/fontawesome-free/css/all.min.css';
 
 
 
-const page = () => {
+const Page = () => {
+  const router = useRouter()
+  const [website, setWebsite] = useState("") 
+  const [result, setResult] = useState(null) 
+  const [loading, setLoading] = useState(false) 
+
+  
+  useEffect(() => {
+    const token = localStorage.getItem("token")
+    if (!token) {
+      alert("Please login first to use this tool!")
+      router.push('/login') 
+    }
+  }, [router])
+
+  // Backend ko data bhejne ke liye
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    setResult(null)
+
+    try {
+      setLoading(true)
+      const token = localStorage.getItem("token") //authentacation
+
+      const res = await axios.post(
+        "http://localhost:5000/api/broken", // Backend Route
+        { website },
+        {
+          headers: {
+            Authorization: `Bearer ${token}` // Passing Token to protect middleware
+          }
+        }
+      )
+
+      setResult(res.data) 
+
+    } catch (error) {
+      console.error(error)
+      if (error.response?.status === 401) {
+        alert("Session expired. Please login again.")
+        router.push('/login')
+      } else {
+        alert("Error: " + (error.response?.data?.message || "Scan failed"))
+      }
+    } finally {
+      setLoading(false)
+    }
+  }
   return (
     <main className="m-8">
       <section className="mt-4 p-4 bg-gray-100 rounded-2xl">
@@ -17,7 +66,7 @@ const page = () => {
 
       
     
-<form className="mt-2 p-4 ">
+<form onSubmit={handleSubmit} className="mt-2 p-4 ">
   <label
     htmlFor="website-url"
     className="text-2xl font-['Libre_Baskerville'] text-black"
@@ -28,12 +77,14 @@ const page = () => {
   <div className="flex items-center gap-3 mt-2">
     {/* Input */}
     <div className="flex items-center border-2 gap-2.5 p-2.5 border-gray-500 rounded-md w-[340px]">
-      <Link size={20} absoluteStrokeWidth />
+      <LinkIcon size={20} absoluteStrokeWidth />
       <input
         className="text-black outline-none flex-1"
         type="url"
         id="website-url"
         placeholder="https://example.com"
+        value={website} 
+       onChange={(e) => setWebsite(e.target.value)}
         required
       />
     </div>
@@ -48,9 +99,63 @@ const page = () => {
   </div>
   {/* note text  */}
   <p className="mt-2 text-red-600 text-sm">
-    *Make sure your sitemap is accessible and valid.
+    *Make sure your Website Url is valid.
   </p>
 </form>
+
+
+{loading && (
+  <div className="mt-4 p-4 bg-blue-50 border-l-4 border-blue-500 text-blue-700 animate-pulse">
+    <p className="font-bold">Crawling your website...</p>
+    <p className="text-sm italic text-gray-600">This may take a minute depending on the number of links.</p>
+  </div>
+)}
+
+{/*  RESULTS SECTION:  */}
+{result && (
+  <section className="mt-6 p-6 bg-white border-2 border-red-500 rounded-2xl shadow-lg">
+    <h2 className="text-2xl font-bold text-red-600 mb-4 border-b pb-2">Analysis Report</h2>
+    
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+      <div className="p-4 bg-gray-100 rounded-lg">
+        <p className="text-gray-500">Total Unique Links Found</p>
+        <p className="text-3xl font-bold">{result.totalLinks}</p>
+      </div>
+      <div className={`p-4 rounded-lg ${result.brokenLinks.length > 0 ? 'bg-red-50' : 'bg-green-50'}`}>
+        <p className="text-gray-500">Broken Links Detected</p>
+        <p className={`text-3xl font-bold ${result.brokenLinks.length > 0 ? 'text-red-600' : 'text-green-600'}`}>
+          {result.brokenLinks.length}
+        </p>
+      </div>
+    </div>
+
+    {/* Broken Links table */}
+    {result.brokenLinks.length > 0 ? (
+      <div className="max-h-60 overflow-y-auto border rounded-lg">
+        <table className="min-w-full bg-white">
+          <thead className="sticky top-0 bg-gray-100">
+            <tr>
+              <th className="px-4 py-2 border text-left">Broken URL</th>
+              <th className="px-4 py-2 border text-left">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            {result.brokenLinks.map((link, index) => (
+              <tr key={index} className="hover:bg-gray-50">
+                <td className="px-4 py-2 border text-blue-600 text-sm truncate max-w-xs">{link.url}</td>
+                <td className="px-4 py-2 border">
+                  <span className="px-2 py-1 bg-red-100 text-red-700 rounded text-xs font-bold">{link.status}</span>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    ) : (
+      <p className="text-green-600 font-bold italic">No broken links found! Sab sahi hai.</p>
+    )}
+  </section>
+)}
 
 <section className="mt-4 p-4 bg-gray-100 rounded-2xl">
         <h2 className="text-2xl md:text-3xl font-bold font-['Libre_Baskerville']">How the Broken Link Checker Works.</h2>
@@ -173,4 +278,4 @@ const page = () => {
   )
 }
 
-export default page;
+export default Page;
