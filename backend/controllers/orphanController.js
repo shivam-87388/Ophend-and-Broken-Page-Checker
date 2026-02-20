@@ -2,22 +2,18 @@ const axios = require("axios");
 const xml2js = require("xml2js");
 const cheerio = require("cheerio");
 
-// ===============================
-// URL NORMALIZER (Universal Logic)
-// ===============================
+
 const normalizeUrl = (url) => {
     try {
         const parsed = new URL(url);
         let host = parsed.hostname.replace(/^www\./, "");
-        // Folder path ko bachayein aur trailing slash hatayein
+        
         let path = parsed.pathname.replace(/\/$/, "") || "/";
         return host + path;
     } catch { return null; }
 };
 
-// ===============================
-// 1️⃣ Deep Sitemap Scraper
-// ===============================
+
 const getAllUrlsFromSitemap = async (url) => {
     try {
         const response = await axios.get(url, {
@@ -44,9 +40,6 @@ const getAllUrlsFromSitemap = async (url) => {
     }
 };
 
-// ===============================
-// 2️⃣ Internal Crawler (Deep Scanning)
-// ===============================
 const getInternalLinks = async (websiteUrl, maxPages = 500) => {
     const visited = new Set();
     const startUrl = websiteUrl.endsWith('/') ? websiteUrl : websiteUrl + '/';
@@ -69,7 +62,7 @@ const getInternalLinks = async (websiteUrl, maxPages = 500) => {
             });
 
             const $ = cheerio.load(response.data);
-            // Current folder path nikalna taaki relative links sahi banein
+            
             const currentBase = currentUrl.endsWith('/') ? currentUrl : currentUrl.substring(0, currentUrl.lastIndexOf('/') + 1);
 
             $('a').each((i, el) => {
@@ -77,7 +70,7 @@ const getInternalLinks = async (websiteUrl, maxPages = 500) => {
                 if (!href || href.startsWith('#') || href.startsWith('mailto:')) return;
 
                 try {
-                    // 🟢 Relative links ko 'currentBase' ke respect mein resolve karein
+                   
                     const absoluteUrl = new URL(href, currentBase).href.split('#')[0];
                     const parsed = new URL(absoluteUrl);
 
@@ -98,9 +91,7 @@ const getInternalLinks = async (websiteUrl, maxPages = 500) => {
     return [...internalLinks];
 };
 
-// ===============================
-// 3️⃣ Orphan Page Checker (The Final Fix)
-// ===============================
+
 const checkOrphanPages = async (req, res) => {
     try {
         const { website } = req.body;
@@ -109,16 +100,16 @@ const checkOrphanPages = async (req, res) => {
         const rootUrl = website.replace(/\/$/, "");
         const sitemapUrl = website.toLowerCase().endsWith(".xml") ? website : `${rootUrl}/sitemap.xml`;
 
-        // 1. Get Sitemap URLs
+        // Get Sitemap URLs
         const rawSitemap = await getAllUrlsFromSitemap(sitemapUrl);
         if (rawSitemap.length === 0) return res.status(400).json({ message: "Sitemap empty or not found" });
 
         const cleanSitemap = rawSitemap.map(url => normalizeUrl(url)).filter(Boolean);
 
-        // 2. Crawl Website
+        //  Crawl Website
         let cleanInternal = await getInternalLinks(rootUrl, 500);
 
-        // 🟢 UNIVERSAL RULE: Home page hamesha "Linked" mana jayega
+        
         const homePageNormalized = normalizeUrl(rootUrl);
         if (homePageNormalized && !cleanInternal.includes(homePageNormalized)) {
             cleanInternal.push(homePageNormalized);
@@ -127,7 +118,7 @@ const checkOrphanPages = async (req, res) => {
         console.log("Sitemap URLs:", cleanSitemap.length);
         console.log("Internal Links Found:", cleanInternal.length);
 
-        // 3. Comparison
+       
         const orphanClean = cleanSitemap.filter(sLink => !cleanInternal.includes(sLink));
         
         const finalOrphans = rawSitemap.filter(orig => 
@@ -136,7 +127,7 @@ const checkOrphanPages = async (req, res) => {
 
         return res.status(200).json({
             totalInSitemap: rawSitemap.length,
-            count: finalOrphans.length, // ✅ Dummy site par ab "1" dikhayega
+            count: finalOrphans.length,
             data: finalOrphans 
         });
     } catch (error) {
