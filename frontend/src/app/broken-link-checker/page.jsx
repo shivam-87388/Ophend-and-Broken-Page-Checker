@@ -155,7 +155,7 @@ const Page = () => {
         </table>
       </div>
     ) : (
-      <p className="text-green-600 font-bold italic">No broken links found! Sab sahi hai.</p>
+      <p className="text-green-600 font-bold italic">No broken links found!</p>
     )}
   </section>
 )}
