@@ -19,44 +19,34 @@ useEffect(() => {
     }
   }, [])
 
-  const handleSubmit = async (e) => {
-    e.preventDefault()
-    setResult(null)
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  setResult(null); // 🟢 Sabse pehle purana data saaf karein
+  setLoading(true);
 
-    try {
-      setLoading(true)
-      const token = localStorage.getItem("token")
+  try {
+    const token = localStorage.getItem("token");
+    const res = await axios.post(
+      "http://localhost:5000/api/orphan",
+      { website },
+      { headers: { Authorization: `Bearer ${token}` } }
+    );
 
-      const res = await axios.post(
-        "http://localhost:5000/api/orphan",
-        { website },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`
-          }
-        }
-      )
+    // 🔍 Check karein terminal data match ho raha hai
+    console.log("Naya Data Aaya:", res.data); 
+    setResult(res.data); // 🟢 Naya 138 wala data yahan set hoga
 
-      setResult(res.data)
-
-    } catch (error) {
-      console.error(error)
-      
-      if (error.response?.status === 401) {
-        alert("Session expired. Please login again.")
-        router.push('/login')
-      } else {
-        alert("Error: " + (error.response?.data?.message || "Something went wrong"))
-      }
-    } finally {
-      setLoading(false)
-    }
+  } catch (error) {
+    console.error(error);
+  } finally {
+    setLoading(false);
   }
+};
 
   return (
     <main className="m-8">
       <section className="mt-4 p-4 bg-gray-100 rounded-2xl">
-      <h1 className="text-2xl md:text-3xl font-bold font-['Libre_Baskerville']">Orphan Page Checker</h1>
+      <h1 className="text-3xl md:text-4xl font-bold font-['Libre_Baskerville']">Orphan Page Checker</h1>
     <h2 className="text-xl font-semibold md:text-2xl font-['Libre_Baskerville']">Find Hidden Pages That Search Engines Can’t Discover</h2>
     <p className="text-xl md:text-2xl font-['Rosario']">Orphan pages are web pages that exist on your website but are not linked from any internal pages. Because search engines rely on internal links to crawl and discover content, orphan pages often remain unindexed or perform poorly in search results.</p>
     <p className="text-xl mt-2.5 md:text-2xl font-['Rosario']">This <span className="font-bold">Orphan Page Checker</span> analyzes your website structure using your sitemap and internal links to accurately identify orphan pages.</p>
@@ -90,7 +80,7 @@ useEffect(() => {
     {/* Button */}
     <button
       type="submit"
-      className="finline-flex items-center justify-center px-3 py-2 mr-3 text-xl font-['Libre_Baskerville'] font-medium text-center text-black rounded-lg border-2 border-red-600 hover:bg-red-600 hover:text-white hover:border-transparent hover:ring-2 hover:ring-red-600 hover:ring-offset-2 transition-all duration-200"
+      className="finline-flex items-center justify-center px-3 py-2 mr-3 text-xl font-['Lora'] font-medium text-center text-white rounded-lg bg-red-600 ring-2 ring-red-600 ring-offset-2 cursor-pointer transition-transform transform hover:scale-95"
     >
       <i className="fa-brands fa-searchengin fa-lg"></i>
       <span>Analysis</span>
@@ -110,6 +100,7 @@ useEffect(() => {
 )}
 
 {/*New Result */}
+{/* 🟢 UPDATED: Result Display logic */}
 {result && (
   <section className="mt-6 p-6 bg-white border-2 border-red-500 rounded-2xl shadow-lg">
     <h2 className="text-2xl font-bold text-red-600 mb-4 border-b pb-2 font-['Libre_Baskerville']">Orphan Page Report</h2>
@@ -117,26 +108,28 @@ useEffect(() => {
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
       <div className="p-4 bg-gray-100 rounded-lg border border-gray-200">
         <p className="text-gray-500 font-['Rosario'] font-bold">Total Pages in Sitemap</p>
-        <p className="text-3xl font-bold text-gray-800">{result.totalPagesInSitemap || result.count || 0}</p>
+        {/* 🟢 Backend se 'totalInSitemap' dikhao */}
+        <p className="text-3xl font-bold text-gray-800">{result.totalInSitemap || 0}</p> 
       </div>
       <div className="p-4 bg-red-50 rounded-lg border border-red-100">
-        <p className="text-red-700 font-['Rosario'] font-bold">Orphan Pages Found</p>
-        <p className="text-3xl font-bold text-red-600">
-          {(result.links || result.data || []).length}
-        </p>
-      </div>
+  <p className="text-red-700 font-['Rosario'] font-bold">Orphan Pages Found</p>
+  <p className="text-3xl font-bold text-red-600">
+  {result.count} 
+</p>
+</div>
     </div>
 
     <h3 className="font-bold text-xl mb-3 font-['Libre_Baskerville'] text-black">Detected URLs:</h3>
     <div className="max-h-60 overflow-y-auto border p-2 rounded bg-gray-50">
       <ul className="list-disc pl-6 space-y-1">
-        {(result.links || result.data || []).map((url, index) => (
+        {/* 🟢 Backend se 'data' array map karein */}
+        {(result.data || []).map((url, index) => (
           <li key={index} className="text-blue-600 text-sm mb-1 truncate font-['Rosario'] hover:text-red-600 transition-colors">
             {url}
           </li>
         ))}
-        {(result.links || result.data || []).length === 0 && (
-          <p className="text-green-600 font-bold italic p-2">Zero Orphan Pages Found! Your site structure is healthy.</p>
+        {(!result.data || result.data.length === 0) && (
+          <p className="text-green-600 font-bold italic p-2">Zero Orphan Pages Found!</p>
         )}
       </ul>
     </div>

@@ -2,99 +2,107 @@
 import React from 'react'
 const Footer = () => {
   return (
-  
-<footer className="mt-auto bg-[#ED9D05] rounded-tl-[50px] rounded-tr-[50px]">
-  <div className="mt-auto w-full max-w-[85rem] sm:px-6 p-4 mx-auto">
-     {/* Grid */}
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-      <div className=" flex justify-center col-span-full lg:col-span-1">
-        <img src="/logo/logo.png" alt="logo" className="h-24  w-auto max-w-[180px] object-contain"/>
+  <footer className="bg-[#ED9D05] rounded-tl-[50px] rounded-tr-[50px]">
+  <div className="px-5 py-8 mx-auto">
+    <div className="flex flex-wrap w-full md:text-left text-center order-first gap-4 lg:gap-0">
+      {/* logo section */}
+      <div className="flex justify-center lg:justify-start lg:w-1/4 md:w-1/2 w-full h-24 px-4 ">
+       <img src="/logo/logo.png"alt="logo"></img>
       </div>
-      {/* End Col */}
-
-      <nav aria-label="Footer Navigation" className=" col-span-1 flex flex-col items-center text-center ">
-        <h4 className="font-bold font-['Libre_Baskerville']  text-xl text-white ">Quick Links</h4>
-         <ul className="mt-2 grid gap-3 place-items-center ">
-        <li><a href='/' className="inline-block text-white font-['Libre_Baskerville'] text-lg font-semibold transition-transform transform hover:scale-95">Home</a></li>
-        <li><a href='/about-us' className="inline-block text-white font-['Libre_Baskerville'] text-lg font-semibold transition-transform transform hover:scale-95">About us</a></li>
-        <li><a href='/orphan-page-checker' className="inline-block text-white font-['Libre_Baskerville'] text-lg font-semibold transition-transform transform hover:scale-95">Orphan Page <br/>Checker</a></li>
-        <li><a href='/broken-link-checker' className="inline-block text-white font-['Libre_Baskerville'] text-lg font-semibold transition-transform transform hover:scale-95">Broken Link <br/>Checker</a></li>
-        <li><a href='/blog' className="inline-block text-white font-['Libre_Baskerville'] text-lg font-semibold transition-transform transform hover:scale-95">Blog</a></li>
-      </ul>
-      </nav>
-      {/* End Col */}
-
-      <nav aria-label="Footer Navigation" className="col-span-1 flex flex-col items-center text-center">
-        <h4 className="text-white font-bold font-['Libre_Baskerville'] text-xl ">Social Links</h4>
-          <ul className="mt-2 flex flex-col items-start ">
-         <li>
-            <a href="#" className="inline-flex items-center transition duration-300 hover:scale-90 gap-1.5"><img src="/socialmedia-icon/whatsapp logo.png" alt="Whatshapp" className="w-10"/> <span className="text-white font-['Libre_Baskerville'] text-lg font-semibold">Whatshapp</span></a>
+      <div className="flex flex-col items-center lg:w-1/4 md:w-1/2 w-full px-4">
+        <h2 className="font-bold font-['Lora'] text-xl text-white ">Quick Links
+        </h2>
+        <nav className=" list-none mt-2 lg:text-start text-center space-y-2.5 items-center">
+          <li>
+            <a href='/'className="inline-block text-white font-['Lora'] text-lg cursor-pointer font-semibold transition-transform transform hover:scale-95">Home</a>
           </li>
           <li>
-            <a href="#" className="inline-flex items-center transition duration-300 hover:scale-90 gap-1.5"><img src="/socialmedia-icon/facebook logo.png" alt="Facebook" className="w-10"/> <span className="text-white font-['Libre_Baskerville'] text-lg font-semibold">Facebook</span></a>
+            <a href='/about-us'className="inline-block text-white font-['Lora'] text-lg cursor-pointer font-semibold transition-transform transform hover:scale-95">About Us</a>
           </li>
           <li>
-            <a href="#" className="inline-flex items-center transition duration-300 hover:scale-90 gap-1.5"><img src="/socialmedia-icon/instagram logo.png" alt="Instagram" className="w-10"/> <span className="text-white font-['Libre_Baskerville'] text-lg font-semibold">Instagram</span></a>
+            <a href='/orphan-page-checker'className="inline-block text-white font-['Lora'] text-lg cursor-pointer font-semibold transition-transform transform hover:scale-95">Orphan Page <br/>Checker</a>
           </li>
           <li>
-            <a href="#" className="inline-flex items-center transition duration-300 hover:scale-90 gap-1.5"><img src="/socialmedia-icon/linkedin logo.png" alt="LinkedIn" className="w-10"/> <span className="text-white font-['Libre_Baskerville'] text-lg font-semibold">LinkedIn</span></a>
+            <a href='/broken-link-checker'className="inline-block text-white font-['Lora'] text-lg cursor-pointer font-semibold transition-transform transform hover:scale-95">Broken Link <br/>Checker</a>
           </li>
           <li>
-           <a href="https://github.com/shivam-87388" target='blank' className="inline-flex items-center transition duration-300 hover:scale-90 gap-1.5"><img src="/socialmedia-icon/github logo.png" alt="Github" className="w-10"/> <span className="text-white font-['Libre_Baskerville'] text-lg font-semibold">Github</span></a>
+            <a href='/blog'className="inline-block text-white font-['Lora'] text-lg cursor-pointer font-semibold transition-transform transform hover:scale-95">Blog</a>
+          </li>
+        </nav>
+      </div>
+
+      {/* social link section */}
+      <div className="flex flex-col items-center lg:w-1/4 md:w-1/2 w-full px-4">
+        <h2 className="font-bold font-['Lora'] text-xl text-white">
+          Social Links
+        </h2>
+        <nav className="list-none mt-2 lg:text-start text-center space-y-2.5 items-center">
+          <li>
+            <a className="inline-block text-white font-['Lora'] text-lg cursor-pointer font-semibold transition-transform transform hover:scale-95">Whatshapp</a>
+          </li>
+           <li>
+            <a className="inline-block text-white font-['Lora'] text-lg cursor-pointer font-semibold transition-transform transform hover:scale-95">Instagram</a>
           </li>
           <li>
-             <a href="#" className="inline-flex items-center transition duration-300 hover:scale-90 gap-1.5"><img src="/socialmedia-icon/gmail logo.png" alt="mail" className="w-10"/> <span className="text-white font-['Libre_Baskerville'] text-lg font-semibold">Mail</span></a>
+            <a className="inline-block text-white font-['Lora'] text-lg cursor-pointer font-semibold transition-transform transform hover:scale-95">Facebook</a>
           </li>
-      </ul>
-      </nav>
- {/* Newsletter */}
-      <div className="md:col-span-2 lg:col-span-1 flex flex-col items-center text-center lg:items-start lg:text-left">
-  <h4 className="text-white font-bold font-['Libre_Baskerville'] text-xl  mb-1">
-    Newsletter
-  </h4>
-
-  <p className="text-white/90 text-sm mb-3">
-    Subscribe to get SEO tips, updates & tools.
-  </p>
-
-  <form className="flex items-center gap-2">
-
-    <label htmlFor="newsletter-email" className="sr-only">
-      Email address
-    </label>
-
-    <input
-      type="email"
-      id="newsletter-email"
-      required
-      placeholder="Enter your email"
-      className="w-full px-4 py-2 rounded-[5px] border border-black/30 outline-none  focus:ring-1 hover:ring-2 "
-    />
-
-    <button
-      type="submit"
-      className="bg-white text-black font-bold font-['Libre_Baskerville'] px-4 py-2 rounded-md cursor-pointer hover:bg-red-600 hover:text-white transition"
-    >
-      Subscribe
-    </button>
-
-  </form>
-</div>
-
+          <li>
+            <a className="inline-block text-white font-['Lora'] text-lg cursor-pointer font-semibold transition-transform transform hover:scale-95">LinkedIn</a>
+          </li>
+           <li>
+            <a href="https://github.com/shivam-87388"target="blank"className="inline-block text-white font-['Lora'] text-lg cursor-pointer font-semibold transition-transform transform hover:scale-95">Github</a>
+            </li>
+             <li>
+            <a className="inline-block text-white font-['Lora'] text-lg cursor-pointer font-semibold transition-transform transform hover:scale-95">Mail</a>
+          </li>
+        </nav>
+      </div>
+      <div className="lg:w-1/4 md:w-1/2 w-full px-4">
+        <h2 className="text-white font-bold font-['Lora'] text-xl mb-1">
+          Newsletter
+        </h2>
+        <p className="text-white/90 text-sm mb-3 mt-2 md:text-left text-center">
+          Subscribe to get SEO tips, updates & tools.
+        </p>
+        <div className="flex xl:flex-nowrap md:flex-nowrap lg:flex-wrap flex-wrap justify-center items-end md:justify-start">
+          <div className="relative w-40 sm:w-auto xl:mr-4 lg:mr-0 sm:mr-4 mr-2">
+            <label htmlFor="newsletter-email"
+              className="sr-only"
+            >
+             Email address
+            </label>
+            <input
+            type="email"
+            id="newsletter-email"
+            required
+            placeholder="Enter your email"
+              className="py-2.5 sm:py-3 px-4 rounded-lg block w-full bg-layer border-layer-line sm:text-sm text-foreground placeholder:text-muted-foreground-1 focus:border-primary-focus focus:ring-primary-focus disabled:opacity-50 border-1 border-black   focus:border-hidden disabled:pointer-events-none"
+            />
+          </div>
+          <button className="py-3 px-4 inline-flex items-center gap-x-2 font-['Lora'] font-semibold rounded-lg bg-white text-black text-sm hover:bg-red-600 hover:text-white  disabled:opacity-50 cursor-pointer">
+            Subscribe
+          </button>
+        </div>
+        
+      </div>
     </div>
-    
   </div>
-  {/* privicy policy | terms and conditions */}
-  <div className="flex justify-between items-center bg-white w-full  mx-auto py-2 px-5 flex-wrap flex-col sm:flex-row md:gap-2">
-      <p className="text-[#525252] text-md font-bold font-['Libre_Baskerville'] text-center sm:text-left">© Copyright LinkSentinel 2026. All rights reserved.</p>
-      <div className="flex lg:gap-8 gap-2">
-         <p className="text-[#525252] text-md font-bold font-['Libre_Baskerville'] text-center sm:text-left">Terms & Condition</p>
-      <p className="text-[#525252] text-md font-bold font-['Libre_Baskerville'] text-center sm:text-left">Privacy Policy</p>
+  {/* privicy policy */}
+  <div className="bg-gray-100">
+    <div className="container py-2 mx-auto flex justify-between items-center sm:flex-row flex-col">
+      <p className="text-[#525252] text-md font-bold font-['Lora'] text-center sm:text-left">© Copyright LinkSentinel 2026. All rights reserved.</p>
+    <div className="flex lg:gap-8 gap-2">
+         <p className="text-[#525252] text-md font-bold font-['Lora'] text-center sm:text-left">Terms & Condition</p>
+      <p className="text-[#525252] text-md font-bold font-['Lora'] text-center sm:text-left">Privacy Policy</p>
       </div>
+
      
       
+    </div>
   </div>
 </footer>
+
+
 
   ) 
 }

@@ -30,7 +30,15 @@ const Signin = () => {
       axios.post('http://localhost:5000/api/users/login', values)
         .then((response) => {
           toast.success(response?.data?.message || "Login successfully");
+
           localStorage.setItem("token", response.data.token); 
+      localStorage.setItem("userInfo", JSON.stringify({
+        name: response.data.name,
+        email: response.data.email
+      }));
+      setTimeout(() => {
+        window.location.href = "/"; 
+      }, 1000);
           resetForm();
         })
         .catch((error) => {
@@ -116,8 +124,8 @@ const Signin = () => {
                    onBlur={signinForm.handleBlur}
                    className="py-2.5 sm:py-3 px-4 block w-full border border-gray-300 rounded-lg text-sm sm:text-base placeholder:text-sm sm:placeholder:text-base focus:border-blue-500 focus:ring-blue-500 dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400"
                   />
-                  {signinForm.touched.password && signinForm.errors.password && (
-                    <p className="text-red-500 text-sm">{signinForm.errors.password}</p>
+                  {signinForm.touched.email && signinForm.errors.email && (
+                  <p className="text-red-500 text-sm mt-1">{signinForm.errors.email}</p>
                   )}
 
                 </div>
