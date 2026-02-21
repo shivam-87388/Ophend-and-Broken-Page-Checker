@@ -93,10 +93,8 @@ const Navbar = () => {
                   <div className="bg-white rounded-xl shadow-2xl border border-gray-100 p-4 text-left overflow-hidden">
                     <div className="border-b pb-3 mb-3">
                       {/* Dropdown mein Full Name: firstName + lastName */}
-                      <p className="text-sm font-bold text-gray-800 uppercase tracking-tight">
-                        {user.firstName || getButtonName()} {user.lastName || ""}
-                      </p>
-                      <p className="text-xs text-gray-500 truncate mt-0.5 lowercase italic">{user.email}</p>
+                      
+                      <p className="text-md text-gray-500 truncate mt-0.5 ">{user.email}</p>
                     </div>
                     
                     <button 
