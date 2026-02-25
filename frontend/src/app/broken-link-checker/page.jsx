@@ -1,5 +1,5 @@
 'use client'
-import { useState, useEffect } from 'react' 
+import { useState, useEffect, } from 'react' 
 import { useRouter } from 'next/navigation' 
 import { Link as LinkIcon } from 'lucide-react' 
 import axios from 'axios'
@@ -17,8 +17,12 @@ const Page = () => {
   useEffect(() => {
     const token = localStorage.getItem("token")
     if (!token) {
+      if (!window.hasShownAlert) {
+        window.hasShownAlert = true;
       alert("Please login first to use this tool!")
-      router.push('/login') 
+      router.push('/signin') 
+      setTimeout(() => { window.hasShownAlert = false; }, 3000);
+      }
     }
   }, [router])
 
@@ -47,7 +51,7 @@ const Page = () => {
       console.error(error)
       if (error.response?.status === 401) {
         alert("Session expired. Please login again.")
-        router.push('/login')
+        router.push('/signin')
       } else {
         alert("Error: " + (error.response?.data?.message || "Scan failed"))
       }

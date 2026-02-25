@@ -1,5 +1,6 @@
 'use client'
 import React from 'react'
+import { IconFileSearch , IconLinkOff } from "@tabler/icons-react";
 
 const Homepage = () => {
   return (
@@ -16,34 +17,24 @@ Health Checker
       <p className="max-w-2xl mb-6 font-light font-['DM Sans'] text-gray-800 lg:mb-8 text-2xl">
        Scan your website for orphaned pages and broken links with our fast and accurate tools.
       </p>
-      <a
+      <div className='flex flex-col md:flex-row gap-6 w-fit'>
+         <a
         href="/broken-link-checker"
-        className="inline-flex items-center justify-center px-5 py-3 mr-3 text-2xl font-['Lora'] font-medium text-center text-black rounded-lg border-2 border-red-600 hover:bg-red-600 hover:text-white hover:border-transparent hover:ring-2 hover:ring-red-600 hover:ring-offset-2 transition-all duration-200"
+        className="inline-flex  items-center justify-center px-5 py-3  text-2xl font-['Lora'] font-medium text-center  rounded-lg text-white  bg-red-600 ring-2 ring-red-600 ring-offset-2 cursor-pointer transition-transform transform hover:scale-95"
       > 
         Broken Link
-        <br/>
-        Checker
-        <svg
-          className="w-5 h-5 ml-2 -mr-1"
-          fill="currentColor"
-          viewBox="0 0 20 20"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            fillRule="evenodd"
-            d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
-            clipRule="evenodd"
-          />
-        </svg>
+        <IconLinkOff size={30} className="ml-2"/>   
       </a>
       <a
         href="/orphan-page-checker"
-        className="inline-flex items-center justify-center px-5 py-3 lg:mt-0 mt-2 font-['Lora'] text-2xl font-medium text-center text-black border-2 border-gray-400 rounded-lg hover:bg-gray-200 transition-all duration-200 "
+        className="inline-flex  items-center justify-center px-5 py-3  text-2xl font-['Lora'] font-medium text-center  rounded-lg text-white  bg-zinc-500 ring-2 ring-zinc-500 ring-offset-2 cursor-pointer transition-transform transform hover:scale-95"
       >
-        Orphan page
-        <br/>
-        Checker
+        Orphan Page
+        <IconFileSearch size={30} className="ml-2"/>  
       </a>
+      </div>
+     
+      
     </div>
     <div className=" mt-8 lg:mt-0 lg:col-span-5 lg:flex">
       <img

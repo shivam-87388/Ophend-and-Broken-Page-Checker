@@ -32,8 +32,12 @@ const Signin = () => {
           toast.success(response?.data?.message || "Login successfully");
 
           localStorage.setItem("token", response.data.token); 
-      localStorage.setItem("userInfo", JSON.stringify({
-        name: response.data.name,
+
+          const fullName = response.data.name || ""; 
+  const [fName, ...lName] = fullName.trim().split(" ");
+
+  localStorage.setItem("userInfo", JSON.stringify({
+     name: response.data.name,
         email: response.data.email
       }));
       setTimeout(() => {
@@ -41,11 +45,11 @@ const Signin = () => {
       }, 1000);
           resetForm();
         })
-        .catch((error) => {
-          console.error(error);
-          toast.error('Invalid email or password');
-        });
-    }
+    .catch((error) => {
+      console.error(error);
+      toast.error('Invalid email or password');
+    });
+}
     
   });
   return (

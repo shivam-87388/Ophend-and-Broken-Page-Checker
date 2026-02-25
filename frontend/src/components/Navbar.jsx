@@ -1,8 +1,28 @@
 'use client'
 import { IconUserCircle, IconUsers, IconLogout, IconChevronDown } from '@tabler/icons-react' 
-import React, { useState, useEffect } from 'react'
+import { Icon }  from 'lucide-react';
+import React, { useState, useEffect, useRef} from 'react'
+import Link from 'next/link';
 
 const Navbar = () => {
+  
+ const [open, setOpen] = useState(false)
+  const dropdownRef = useRef(null)
+
+  // Close on outside click
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setOpen(false)
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside)
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside)
+    }
+  }, [])
+
   //start
  const [user, setUser] = useState(null); 
   const [showDropdown, setShowDropdown] = useState(false);
@@ -27,8 +47,7 @@ const Navbar = () => {
     window.location.href = "/signin"; 
   };
 
-  // 🟢 Logic: Naam ke beech mein space laane ke liye aur 'User' hatane ke liye
-  const getButtonName = () => {
+   const getButtonName = () => {
     if (!user) return "User";
     
     // Agar firstName aur lastName alag hain toh space ke saath jodo
@@ -47,8 +66,8 @@ const Navbar = () => {
 
     return "User";
   };
-
   // Hydration Match logic
+
   if (!mounted) return null;
   // end
   return (
@@ -58,8 +77,39 @@ const Navbar = () => {
         <nav className="flex flex-col lg:flex-row  justify-center items-center gap-1.5 lg:gap-8 text-center">
           <a href='/' className="inline-flex justify-center text-center items-center cursor-pointer hover:bg-red-600 rounded-lg  p-2 text-white text-xl font-bold font-['Libre_Baskerville']">Home</a>
           <a href='/about-us' className="inline-flex justify-center text-center items-center cursor-pointer hover:bg-red-600 rounded-lg p-2 text-white text-xl font-bold font-['Libre_Baskerville']">AboutUs</a>
-          <a href='/orphan-page-checker' className="inline-flex items-center justify-center text-center cursor-pointer hover:bg-red-600 rounded-lg  p-2 text-white text-xl font-bold font-['Libre_Baskerville']">Orphan Page<br />Checker</a>
-          <a href='/broken-link-checker' className="inline-flex items-center justify-center text-center cursor-pointer hover:bg-red-600 rounded-lg  p-2 text-white text-xl font-bold font-['Libre_Baskerville']">Broken Link<br />Checker</a>
+          {/* dropdown menu */}
+           <div 
+            className="relative "
+            onMouseEnter={() => setOpen(true)}
+            onMouseLeave={() => setOpen(false)}
+            >
+
+      {/* Button */}
+      <button
+        className="inline-flex items-center justify-center text-center cursor-pointer hover:bg-red-600 rounded-lg p-2 text-white text-xl font-bold font-['Libre_Baskerville']"
+      >
+        SEO Audit Tool
+        <IconChevronDown size={20} className="ml-1" />
+      </button>
+
+      {/* Dropdown Menu */}
+      {open && (
+        <div className="absolute left-0  w-48   bg-gray-100 rounded-xl shadow-lg">
+          <ul className="py-2.5 text-gray-700 space-y-2.5">
+            <Link href="/broken-link-checker" className="inline-block px-4 hover:bg-gray-100 cursor-pointer">
+              Broken Link Checker
+            </Link>
+            <hr className="border-gray-300"></hr>
+            <Link href="/orphan-page-checker" className="inline-block px-4 hover:bg-gray-100 cursor-pointer">
+              Orphan Page Checker
+            </Link>
+            
+            
+          </ul>
+        </div>
+      )}
+    </div>
+    {/* 'close dropdown menu */}
           <a href='/blog' className="inline-flex items-center justify-center text-center cursor-pointer hover:bg-red-600 rounded-lg  p-2 text-white text-xl font-bold font-['Libre_Baskerville']">Blog</a>
         </nav>
         {/* add */}
@@ -83,7 +133,7 @@ const Navbar = () => {
             >
               <button className="inline-flex items-center justify-center bg-white rounded-lg px-5 py-2 gap-2 text-black text-xl font-bold font-['Libre_Baskerville'] cursor-pointer shadow-md min-w-[130px]">
                 <IconUserCircle size={30} className="text-[#ED6D07]" />
-                <span className="capitalize">{getButtonName()}</span> 
+               <span className="capitalize">{getButtonName()}</span> 
                 <IconChevronDown size={20} className={`transition-transform duration-300 ${showDropdown ? 'rotate-180' : ''}`} />
               </button>
 
