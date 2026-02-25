@@ -202,15 +202,46 @@ doc.text(
   // end pdf pie chart section
 
   // --- 5. DATA TABLE ---
-  autoTable(doc, {
-    startY: 145, // Chart box ke theek niche se shuru hoga
-    margin: { left: 15, right: 15 },
-    head: [['Sr.', 'Orphan URL Path', 'Analysis Detail']],
-    body: (result.data || []).map((url, i) => [i + 1, url, "Critical Issue: No Internal Link Found"]),
-    headStyles: { fillColor: [237, 109, 7], textColor: [255, 255, 255], fontSize: 11 },
-    styles: { fontSize: 9, cellPadding: 4, font: 'helvetica' },
-    theme: 'grid'
-  });
+  const pageWidth = doc.internal.pageSize.getWidth();
+
+// Left table area: 15mm to 110mm
+const tableStartX = 15;
+const tableEndX = 110;
+const tableWidth = tableEndX - tableStartX;
+
+autoTable(doc, {
+  startY: 78,
+  margin: {
+    left: tableStartX,
+    right: pageWidth - tableEndX
+  },
+
+  head: [['Sr.', 'Orphan URL Path']],
+
+  body: (result.data || []).map((url, i) => [
+    i + 1,
+    url
+  ]),
+
+  columnStyles: {
+    0: { cellWidth: 15 },
+    1: { cellWidth: tableWidth - 15 }
+  },
+
+  styles: {
+    fontSize: 8,
+    cellPadding: 3,
+    overflow: 'linebreak',
+    font: 'helvetica'
+  },
+
+  headStyles: {
+    fillColor: [237, 109, 7],
+    textColor: 255
+  },
+
+  theme: 'grid'
+});
 
   // --- 6. FOOTER (Page Numbers) ---
   const pageCount = doc.internal.getNumberOfPages();
