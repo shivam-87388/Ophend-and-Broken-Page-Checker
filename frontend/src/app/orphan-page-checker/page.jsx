@@ -82,32 +82,52 @@ const downloadOrphanPDF = async () => {
   doc.line(15, 32, 195, 32);
 
   // --- 3. TITLE & WEBSITE INFO ---
-  doc.setFont("helvetica", "bold");
-  doc.setFontSize(22);
-  doc.setTextColor(30, 41, 59);
-  doc.text("Orphan Page Analysis", 15, 45);
+ doc.setFont("helvetica", "bold");
+doc.setFontSize(18);
+doc.setTextColor(30, 41, 59);
+doc.text("Orphan Page Analysis", 15, 42); // 🟢 Position fix ki
 
-  doc.setFontSize(10);
-  doc.setFont("helvetica", "normal");
-  doc.text(`Target Website: ${website}`, 15, 52);
-  doc.text(`Date: ${today}`, 195, 52, { align: "right" });
+// 2. Target Website Box (URL Button Look)
+const targetBoxY = 48; // 🟢 Height adjust ki spacing ke liye
+doc.setFillColor(248, 250, 252);
+doc.setDrawColor(220);
+doc.roundedRect(15, targetBoxY, 130, 12, 2, 2, "FD");
 
-  // Summary Bar (Grey Box) - Thoda shift kiya taaki overlap na ho
-  doc.setFillColor(245, 245, 245);
-  doc.roundedRect(15, 58, 180, 15, 3, 3, "F");
+// Orange Badge
+doc.setFillColor(237, 109, 7);
+doc.roundedRect(17, targetBoxY + 2, 32, 8, 1, 1, "F");
+doc.setFontSize(7.5);
+doc.setTextColor(255);
+doc.text("TARGET WEBSITE", 33, targetBoxY + 7.5, { align: "center" });
 
-  doc.setFontSize(11);
-  doc.setTextColor(60);
-  doc.text(`Healthy: ${healthy}`, 25, 68);
-  doc.setTextColor(239, 68, 68);
-  doc.text(`Orphan: ${orphan}`, 80, 68);
-  doc.setTextColor(60);
-  doc.text(`Health Score: ${healthScore}%`, 130, 68);
+// Website URL
+doc.setFontSize(9);
+doc.setTextColor(30, 41, 59);
+doc.setFont("helvetica", "normal");
+doc.text(website, 52, targetBoxY + 7.5);
+
+// Date (Aligned with URL)
+doc.setTextColor(120);
+doc.text(`Date: ${today}`, 195, targetBoxY + 7.5, { align: "right" });
+
+// 3. Summary Bar (Ab ye text ke niche aayega proper gap ke saath)
+const summaryY = 65; // 🟢 Nayi position set ki
+doc.setFillColor(245, 245, 245);
+doc.roundedRect(15, summaryY, 180, 12, 2, 2, "F");
+
+doc.setFontSize(10);
+doc.setTextColor(60);
+// 🟢 Text ko box ke andar align kiya (Y: 73)
+doc.text(`Healthy: ${healthy}`, 25, summaryY + 8); 
+doc.setTextColor(239, 68, 68);
+doc.text(`Orphan: ${orphan}`, 85, summaryY + 8);
+doc.setTextColor(60);
+doc.text(`Health Score: ${healthScore}%`, 145, summaryY + 8);
 
   // --- 4. VISUAL ANALYSIS BOX (Coordinates fix kiye hain) ---
   // pdf pie chart section
  const boxX = 120;
-const boxY = 78;
+const boxY = 85;
 const boxWidth = 75;
 const boxHeight = 62;
 
@@ -119,6 +139,7 @@ doc.roundedRect(boxX, boxY, boxWidth, boxHeight, 3, 3, "FD");
 // Title
 doc.setFontSize(11);
 doc.setTextColor(30, 41, 59);
+
 doc.setFont("helvetica", "bold");
 doc.text("Visual Analysis", boxX + boxWidth / 2, boxY + 10, { align: "center" });
 
@@ -210,7 +231,7 @@ const tableEndX = 110;
 const tableWidth = tableEndX - tableStartX;
 
 autoTable(doc, {
-  startY: 78,
+  startY: 85,
   margin: {
     left: tableStartX,
     right: pageWidth - tableEndX
@@ -249,7 +270,7 @@ autoTable(doc, {
     doc.setPage(i);
     doc.setFontSize(8);
     doc.setTextColor(150);
-    doc.text(`Page ${i} of ${pageCount} - Confidential SEO Report`, 105, 285, { align: "center" });
+    doc.text(`Page ${i} of ${pageCount} - By Linksentinel SEO Report`, 105, 285, { align: "center" });
   }
 
   doc.save(`LinkSentinel_Report_${today.replace(/\//g, '-')}.pdf`);
