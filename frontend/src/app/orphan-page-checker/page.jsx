@@ -64,27 +64,7 @@ const downloadOrphanPDF = async () => {
 
   // --- 2. HEADER ---
   // --- 2. HEADER (Logo with Background Box) ---
-  // ✅ NAYA UPDATED HEADER CODE (Orange Box Removed + Wide Logo):
-try {
-    const logoX = 15;
-    const logoY = 10;
-    
-    // 🟢 Width ko 25 kar diya hai taaki logo bada dikhe
-    const logoWidth = 25; 
-    const logoHeight = 14;
-
-    // Logo Image (Direct add kiya bina box ke)
-    doc.addImage("/logo/pdf logo.png", "PNG", logoX, logoY, logoWidth, logoHeight); 
-
-    // Branding Text (Position 50 rakhi hai taaki bade logo se door rahe)
-    doc.setFont("helvetica", "bold");
-    doc.setFontSize(22);
-    doc.setTextColor(237, 109, 7);
-    doc.text("LINKSENTINEL", 50, 23); 
-
-} catch (e) {
-    console.log("Logo not found");
-}// 🟢 22 se 23 kiya taaki logo ke center mein dikhe
+  // 🟢 22 se 23 kiya taaki logo ke center mein dikhe
 
   doc.setFontSize(9);
   doc.setTextColor(150);
