@@ -1,3 +1,4 @@
+const Scan = require("../models/Scan");
 const axios = require("axios");
 const xml2js = require("xml2js");
 const cheerio = require("cheerio");
@@ -124,6 +125,12 @@ const checkOrphanPages = async (req, res) => {
         const finalOrphans = rawSitemap.filter(orig => 
             orphanClean.includes(normalizeUrl(orig))
         );
+        await Scan.create({
+        user: req.user, //
+        website: rootUrl,
+        type: "orphan",
+        results: finalOrphans, //
+        });
 
         return res.status(200).json({
             totalInSitemap: rawSitemap.length,

@@ -1,6 +1,7 @@
 const User = require("../models/User");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const Scan = require("../models/Scan");
 
 const generateToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET, {
@@ -47,5 +48,14 @@ exports.loginUser = async (req, res) => {
     });
   } else {
     res.status(401).json({ message: "Invalid credentials" });
+  }
+};
+
+exports.getUserHistory = async (req, res) => {
+  try {
+    const history = await Scan.find({ user: req.user }).sort({ createdAt: -1 }); //
+    res.status(200).json(history);
+  } catch (error) {
+    res.status(500).json({ message: "History fetch nahi ho saki" });
   }
 };

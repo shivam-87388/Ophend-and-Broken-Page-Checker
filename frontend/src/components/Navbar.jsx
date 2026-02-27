@@ -1,6 +1,5 @@
 'use client'
 import { IconUserCircle, IconUsers, IconLogout, IconChevronDown } from '@tabler/icons-react' 
-import { Icon }  from 'lucide-react';
 import React, { useState, useEffect, useRef} from 'react'
 import Link from 'next/link';
 
@@ -96,13 +95,13 @@ const Navbar = () => {
       {open && (
         <div className="absolute left-0  w-48   bg-gray-100 rounded-xl shadow-lg">
           <ul className="py-2.5 text-gray-700 space-y-2.5">
-            <Link href="/broken-link-checker" className="inline-block px-4 hover:bg-gray-100 cursor-pointer">
+            <a href="/broken-link-checker" className="inline-block px-4 hover:bg-gray-100 cursor-pointer">
               Broken Link Checker
-            </Link>
+            </a>
             <hr className="border-gray-300"></hr>
-            <Link href="/orphan-page-checker" className="inline-block px-4 hover:bg-gray-100 cursor-pointer">
+            <a href="/orphan-page-checker" className="inline-block px-4 hover:bg-gray-100 cursor-pointer">
               Orphan Page Checker
-            </Link>
+            </a>
             
             
           </ul>
@@ -146,6 +145,16 @@ const Navbar = () => {
                       
                       <p className="text-md text-gray-500 truncate mt-0.5 ">{user.email}</p>
                     </div>
+
+                    <Link 
+                    href="/history" 
+                    className="w-full flex items-center gap-2 text-gray-700 hover:bg-gray-100 p-2 rounded-lg font-bold transition-all text-base cursor-pointer mb-1"
+                     >
+                   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-[#ED6D07]">
+                   <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+                   </svg>
+                    Scan History
+                   </Link>
                     
                     <button 
                       onClick={handleLogout}
