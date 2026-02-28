@@ -156,9 +156,9 @@ const downloadBrokenPDF = async () => {
   return (
     <main className="m-8">
       <section className="mt-4 p-4 bg-gray-100 rounded-2xl">
-      <h1 className="text-3xl md:text-4xl font-bold font-['Lora']">Broken Link Checker</h1>
-    <h2 className="text-2xl md:text-3xl font-semibold font-['Lora']">Detect and Fix Broken Links That Harm Your SEO</h2>
-    <div className="text-xl font-['DM Sans'] space-y-1.5">
+      <h1 className="text-3xl md:text-4xl font-bold font-['Nunito']">Broken Link Checker</h1>
+    <h2 className="text-2xl md:text-3xl font-semibold font-['Nunito']">Detect and Fix Broken Links That Harm Your SEO</h2>
+    <div className="text-base md:text-lg font-['PT Sans'] space-y-1.5">
        <p>Broken links are hyperlinks that lead to pages or resources that no longer exist or cannot be accessed. These links create a poor user experience and negatively affect your website’s SEO performance.</p>
       <p>The <span className="font-bold">Broken Link Checker Tool</span> scans your website and identifies links that return errors such as 404 (Page Not Found), server errors, or unreachable URLs.</p>
       </div>
@@ -170,7 +170,7 @@ const downloadBrokenPDF = async () => {
 <form onSubmit={handleSubmit} className="mt-2 p-4 ">
   <label
     htmlFor="website-url"
-    className="text-2xl font-['Lora'] text-black"
+    className="text-2xl font-['Nunito'] text-black"
   >
     Enter your website URL
   </label>
@@ -192,7 +192,7 @@ const downloadBrokenPDF = async () => {
     {/* Button */}
     <button
       type="submit"
-      className="finline-flex items-center justify-center px-3 py-2 mr-3 text-xl font-['Lora'] font-medium text-center text-white rounded-lg bg-red-600 ring-2 ring-red-600 ring-offset-2 cursor-pointer transition-transform transform hover:scale-95"
+      className="finline-flex items-center justify-center px-3 py-2 mr-3 text-xl font-['Nunito'] font-medium text-center text-white rounded-lg bg-red-600 ring-2 ring-red-600 ring-offset-2 cursor-pointer transition-transform transform hover:scale-95"
     >
       <i className="fa-brands fa-searchengin fa-lg"></i>
       <span>Analysis</span>
@@ -207,7 +207,7 @@ const downloadBrokenPDF = async () => {
 
 {loading && (
   <div className="mt-4 p-4 bg-blue-50 border-l-4 border-blue-500 text-blue-700 animate-pulse">
-    <p className="font-bold">Crawling your website...</p>
+    <p className="font-bold ">Crawling your website...</p>
     <p className="text-sm italic text-gray-600">This may take a minute depending on the number of links.</p>
   </div>
 )}
@@ -216,12 +216,12 @@ const downloadBrokenPDF = async () => {
 {result && (
   <section className="mt-6 p-6 bg-white border-2 border-red-500 rounded-2xl shadow-lg">
     <div className="flex justify-between items-center mb-6 border-b pb-2">
-      <h2 className="text-2xl font-bold text-red-600">Broken Link Report</h2>
+      <h2 className="text-2xl font-bold font-['Nunito'] text-red-600">Broken Link Report</h2>
       
       {/* 🔘 Download PDF Button */}
       <button 
         onClick={downloadBrokenPDF} // Ye wahi function hai jo maine pehle diya tha
-        className="bg-[#ED6D07] hover:bg-orange-600 text-white px-4 py-2 rounded-lg font-bold flex items-center gap-2 transition-all active:scale-95 text-sm"
+        className="bg-[#ED6D07] hover:bg-orange-600 text-white px-4 py-2 rounded-lg font-bold font-['Nunito'] flex items-center gap-2 transition-all active:scale-95 text-sm"
       >
         <i className="fa-solid fa-file-pdf"></i> Download PDF
       </button>
@@ -271,121 +271,121 @@ const downloadBrokenPDF = async () => {
 )}
 
 <section className="mt-4 p-4 bg-gray-100 rounded-2xl">
-        <h2 className="text-2xl md:text-3xl font-bold font-['Lora']">How the Broken Link Checker Works.</h2>
-        <p className="text-xl md:text-2xl font-['Rosario']">This tool uses automated crawling to detect broken or non-working links across your website.</p>
-        <p className="text-xl font-semibold md:text-2xl font-['Rosario']">Step-by-Step Process:</p>
-        <ol className="list-decimal pl-6 mt-2">
-          <li className="text-xl md:text-2xl font-['Rosario']">The tool crawls all accessible pages of your website.</li> 
-          <li className="text-xl md:text-2xl font-['Rosario']">It extracts all internal and external links.</li>
-          <li className="text-xl md:text-2xl font-['Rosario']">Each link is checked for response status.</li>
-          <li className="text-xl md:text-2xl font-['Rosario']">Links returning error responses are marked as <span className='font-bold'>Broken Links</span>.</li>
-          <li className="text-xl md:text-2xl font-['Rosario']">A detailed report is generated for review.</li>
+        <h2 className="text-3xl md:text-4xl font-bold font-['Nunito']">How the Broken Link Checker Works.</h2>
+        <p className="text-base md:text-lg font-['PT Sans']">This tool uses automated crawling to detect broken or non-working links across your website.</p>
+        <p className="text-base md:text-lg font-semibold font-['PT Sans']">Step-by-Step Process:</p>
+        <ol className="list-decimal pl-6 mt-2 text-base md:text-lg font-['PT Sans']">
+          <li>The tool crawls all accessible pages of your website.</li> 
+          <li>It extracts all internal and external links.</li>
+          <li>Each link is checked for response status.</li>
+          <li>Links returning error responses are marked as <span className='font-bold'>Broken Links</span>.</li>
+          <li>A detailed report is generated for review.</li>
         </ol>
       </section>
 
        <section className="mt-4 bg-gray-100 p-4 rounded-2xl">
-      <h2 className="text-2xl md:text-3xl font-bold font-['Lora']">Types of Broken Links Detected</h2>
-      <p className="mt-2 text-xl md:text-2xl font-['Rosario']">The tool identifies multiple types of broken links including:</p>
+      <h2 className="text-3xl md:text-4xl font-bold font-['Nunito']">Types of Broken Links Detected</h2>
+      <p className="text-base md:text-lg font-['PT Sans']">The tool identifies multiple types of broken links including:</p>
         <ul className="mt-2 space-y-2 pl-2">
           <li>
-            <h4 className="text-xl font-semibold md:text-2xl font-['Lora']">404 Error (Page Not Found)
+            <h4 className="text-lg md:text-xl font-semibold font-['Nunito']">404 Error (Page Not Found)
             </h4>
-            <p className="text-xl md:text-2xl font-['Rosario']">The requested page does not exist on the server.
+            <p className="text-base md:text-lg font-['PT Sans']">The requested page does not exist on the server.
             </p>
           </li>
           <li>
-            <h4 className="text-xl font-semibold md:text-2xl font-['Lora']">Server Errors (500 Errors)
+            <h4 className="text-lg md:text-xl font-semibold font-['Nunito']">Server Errors (500 Errors)
             </h4>
-            <p className="text-xl md:text-2xl font-['Rosario']">Indicates server issues that prevent page loading.
+            <p className="text-base md:text-lg font-['PT Sans']">Indicates server issues that prevent page loading.
             </p>
           </li>
           <li>
-            <h4 className="text-xl font-semibold md:text-2xl font-['Lora']">Redirect Errors
+            <h4 className="text-lg md:text-xl font-semibold font-['Nunito']">Redirect Errors
             </h4>
-            <p className="text-xl md:text-2xl font-['Rosario']">Improper or broken redirections leading to inaccessible pages.
+            <p className="text-base md:text-lg font-['PT Sans']">Improper or broken redirections leading to inaccessible pages.
             </p>
           </li>
           <li>
-            <h4 className="text-xl font-semibold md:text-2xl font-['Lora']">Timeout / Unreachable Links
+            <h4 className="text-lg md:text-xl font-semibold font-['Nunito']">Timeout / Unreachable Links
             </h4>
-            <p className="text-xl md:text-2xl font-['Rosario']">Links that fail to respond or take too long to load.
+            <p className="text-base md:text-lg font-['PT Sans']">Links that fail to respond or take too long to load.
             </p>
           </li>
         </ul>
     </section>
 
       <section className="mt-4 p-4 bg-gray-100 rounded-2xl">
-        <h2 className="text-2xl md:text-3xl font-bold font-['Lora']">Broken Link Analysis Results</h2>
-        <p className="text-xl md:text-2xl font-['Rosario']">Once scanning is complete, a detailed report will be displayed below.</p>
-        <p className="text-xl font-semibold md:text-2xl font-['Rosario']">The Report Includes:</p>
-        <ul className="list-disc pl-6 mt-2">
-          <li className="text-xl md:text-2xl font-['Rosario']">Total pages crawled.</li> 
-          <li className="text-xl md:text-2xl font-['Rosario']">Total links found.</li>
-          <li className="text-xl md:text-2xl font-['Rosario']">Total broken links detected.</li>
-          <li className="text-xl md:text-2xl font-['Rosario']">Status code of each broken link.</li>
-          <li className="text-xl md:text-2xl font-['Rosario']">Source page where broken link exists.</li>
-          <li className="text-xl md:text-2xl font-['Rosario']">Broken link URL.</li>
+        <h2 className="text-3xl md:text-4xl font-bold font-['Nunito']">Broken Link Analysis Results</h2>
+        <p className="text-base md:text-lg font-['PT Sans']">Once scanning is complete, a detailed report will be displayed below.</p>
+        <p className="text-base md:text-lg font-semibold font-['PT Sans']">The Report Includes:</p>
+        <ul className="list-disc pl-6 mt-2 text-base md:text-lg font-['PT Sans']">
+          <li>Total pages crawled.</li> 
+          <li>Total links found.</li>
+          <li>Total broken links detected.</li>
+          <li>Status code of each broken link.</li>
+          <li>Source page where broken link exists.</li>
+          <li>Broken link URL.</li>
         </ul>
-        <p className="text-xl md:text-2xl font-['Rosario']">This information helps users quickly identify and fix issues.</p>
+        <p className="text-base md:text-lg font-['PT Sans']">This information helps users quickly identify and fix issues.</p>
       </section>
 
       <section className="mt-4 p-4 bg-gray-100 rounded-2xl">
-        <h2 className="text-2xl md:text-3xl font-bold font-['Lora']">Why Broken Links Are Bad for SEO</h2>
-        <p className="text-xl md:text-2xl font-['Rosario']">Broken links can significantly harm your website’s performance:</p>
-        <ul className="list-disc pl-6 mt-2">
-          <li className="text-xl md:text-2xl font-['Rosario']">Poor user experience.</li> 
-          <li className="text-xl md:text-2xl font-['Rosario']">Increased bounce rate.</li>
-          <li className="text-xl md:text-2xl font-['Rosario']">Negative search engine ranking signals.</li>
-          <li className="text-xl md:text-2xl font-['Rosario']">Reduced website credibility.</li>
-          <li className="text-xl md:text-2xl font-['Rosario']">Crawl budget wastage.</li>
+        <h2 className="text-3xl md:text-4xl font-bold font-['Nunito']">Why Broken Links Are Bad for SEO</h2>
+        <p className="text-base md:text-lg font-['PT Sans']">Broken links can significantly harm your website’s performance:</p>
+        <ul className="list-disc pl-6 mt-2 text-base md:text-lg font-['PT Sans']">
+          <li>Poor user experience.</li> 
+          <li>Increased bounce rate.</li>
+          <li>Negative search engine ranking signals.</li>
+          <li>Reduced website credibility.</li>
+          <li>Crawl budget wastage.</li>
         </ul>
-        <p className="text-xl md:text-2xl font-['Rosario']">Fixing broken links improves website usability and SEO performance.</p>
+        <p className="text-base md:text-lg font-['PT Sans']">Fixing broken links improves website usability and SEO performance.</p>
       </section>
 
       <section className="mt-4 p-4 bg-gray-100 rounded-2xl">
-        <h2 className="text-2xl md:text-3xl font-bold font-['Lora']">How to Fix Broken Links</h2>
-        <p className="text-xl md:text-2xl font-['Rosario']">After identifying broken links, you can fix them by:</p>
-        <ul className="list-disc pl-6 mt-2">
-          <li className="text-xl md:text-2xl font-['Rosario']">Updating incorrect URLs.</li> 
-          <li className="text-xl md:text-2xl font-['Rosario']">Replacing broken links with working alternatives.</li>
-          <li className="text-xl md:text-2xl font-['Rosario']">Removing outdated or deleted page links.</li>
-          <li className="text-xl md:text-2xl font-['Rosario']">Setting up proper redirects (301 redirects).</li>
-          <li className="text-xl md:text-2xl font-['Rosario']">Restoring deleted pages if necessary.</li>
+        <h2 className="text-3xl md:text-4xl font-bold font-['Nunito']">How to Fix Broken Links</h2>
+        <p className="text-base md:text-lg font-['PT Sans']">After identifying broken links, you can fix them by:</p>
+        <ul className="list-disc pl-6 mt-2 text-base md:text-lg font-['PT Sans']">
+          <li>Updating incorrect URLs.</li> 
+          <li>Replacing broken links with working alternatives.</li>
+          <li>Removing outdated or deleted page links.</li>
+          <li>Setting up proper redirects (301 redirects).</li>
+          <li>Restoring deleted pages if necessary.</li>
         </ul>
       </section>
 
       <section className="mt-4 p-4 bg-gray-100 rounded-2xl">
-        <h2 className="text-2xl md:text-3xl font-bold font-['Lora']">Internal vs External Broken Links</h2>
-        <h3 className="text-xl font-semibold md:text-2xl font-['Rosario']">Internal Broken Links</h3>
-        <p className="text-xl md:text-2xl font-['Rosario']">Links that point to pages within your website but lead to errors.</p>
-        <p className="mt-2.5 text-xl md:text-2xl font-['Rosario']">These affect:</p>
-        <ul className="list-disc pl-6 mt-2">
-          <li className="text-xl md:text-2xl font-['Rosario']">Website navigation.</li> 
-          <li className="text-xl md:text-2xl font-['Rosario']">Internal linking structure.</li>
-          <li className="text-xl md:text-2xl font-['Rosario']">SEO ranking signals.</li>
+        <h2 className="text-3xl md:text-4xl font-bold font-['Nunito'] mb-1.5">Internal vs External Broken Links</h2>
+        <h3 className="text-xl md:text-2xl font-medium font-['Nunito'] mb-1.5">Internal Broken Links</h3>
+        <p className="text-base md:text-lg font-['PT Sans']">Links that point to pages within your website but lead to errors.</p>
+        <p className="mt-1 text-base md:text-lg font-['PT Sans']">These affect:</p>
+        <ul className="list-disc pl-6 mt-2 text-base md:text-lg font-['PT Sans']">
+          <li>Website navigation.</li> 
+          <li>Internal linking structure.</li>
+          <li>SEO ranking signals.</li>
         </ul>
         <hr className="border-t-gray-300 border-t-2 my-4"></hr>
-        <h3 className="text-xl font-semibold md:text-2xl font-['Rosario']">External Broken Links</h3>
-        <p className="text-xl md:text-2xl font-['Rosario']">Links pointing to other websites that are no longer available.</p>
-        <p className="mt-2.5 text-xl md:text-2xl font-['Rosario']">These affect:</p>
-        <ul className="list-disc pl-6 mt-2">
-          <li className="text-xl md:text-2xl font-['Rosario']">Content credibility.</li> 
-          <li className="text-xl md:text-2xl font-['Rosario']">User trust.</li>
-          <li className="text-xl md:text-2xl font-['Rosario']">Outbound link quality.</li>
+        <h3 className="text-xl md:text-2xl font-medium font-['Nunito'] mb-1.5">External Broken Links</h3>
+        <p className="text-base md:text-lg font-['PT Sans']">Links pointing to other websites that are no longer available.</p>
+        <p className="mt-1 text-base md:text-lg font-['PT Sans']">These affect:</p>
+        <ul className="list-disc pl-6 mt-2 text-base md:text-lg font-['PT Sans']">
+          <li>Content credibility.</li> 
+          <li>User trust.</li>
+          <li>Outbound link quality.</li>
         </ul>
       </section> 
 
        <section className="mt-4 p-4 bg-gray-100 rounded-2xl">
-        <h2 className="text-2xl md:text-3xl font-bold font-['Lora']">Who Should Use This Tool</h2>
-        <p className="text-xl md:text-2xl font-['Rosario']">This tool is ideal for:</p>
-        <ul className="list-disc pl-6 mt-2">
-          <li className="text-xl md:text-2xl font-['Rosario']">SEO professionals.</li> 
-          <li className="text-xl md:text-2xl font-['Rosario']">Website owners.</li>
-          <li className="text-xl md:text-2xl font-['Rosario']">Developers.</li>
-          <li className="text-xl md:text-2xl font-['Rosario']">Content managers.</li>
-          <li className="text-xl md:text-2xl font-['Rosario']">Digital marketing teams.</li>
+        <h2 className="text-3xl md:text-4xl font-bold font-['Nunito']">Who Should Use This Tool</h2>
+        <p className="text-base md:text-lg font-['PT Sans']">This tool is ideal for:</p>
+        <ul className="list-disc pl-6 mt-2 text-base md:text-lg font-['PT Sans']">
+          <li>SEO professionals.</li> 
+          <li>Website owners.</li>
+          <li>Developers.</li>
+          <li>Content managers.</li>
+          <li>Digital marketing teams.</li>
         </ul>
-        <p className="text-xl md:text-2xl font-['Rosario']">Anyone managing website content can benefit from broken link detection.</p>
+        <p className="text-base md:text-lg font-['PT Sans']">Anyone managing website content can benefit from broken link detection.</p>
       </section>   
     </main>
   )

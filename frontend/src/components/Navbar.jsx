@@ -74,8 +74,8 @@ const Navbar = () => {
       <div className="mx-auto flex flex-col md:flex-row items-center justify-center md:justify-between p-3 gap-4 md:gap-0">
         <img src="/logo/logo.png" alt="logo" className="h-16 w-auto max-w-[180px] object-contain" />
         <nav className="flex flex-col lg:flex-row  justify-center items-center gap-1.5 lg:gap-8 text-center">
-          <a href='/' className="inline-flex justify-center text-center items-center cursor-pointer hover:bg-red-600 rounded-lg  p-2 text-white text-xl font-bold font-['Libre_Baskerville']">Home</a>
-          <a href='/about-us' className="inline-flex justify-center text-center items-center cursor-pointer hover:bg-red-600 rounded-lg p-2 text-white text-xl font-bold font-['Libre_Baskerville']">AboutUs</a>
+          <a href='/' className="inline-flex justify-center text-center items-center cursor-pointer hover:bg-red-600 rounded-lg  p-2 text-white text-xl font-bold font-['Nunito']">Home</a>
+          <a href='/about-us' className="inline-flex justify-center text-center items-center cursor-pointer hover:bg-red-600 rounded-lg p-2 text-white text-xl font-bold font-['Nunito']">About Us</a>
           {/* dropdown menu */}
            <div 
             className="relative "
@@ -85,7 +85,7 @@ const Navbar = () => {
 
       {/* Button */}
       <button
-        className="inline-flex items-center justify-center text-center cursor-pointer hover:bg-red-600 rounded-lg p-2 text-white text-xl font-bold font-['Libre_Baskerville']"
+        className="inline-flex items-center justify-center text-center cursor-pointer hover:bg-red-600 rounded-lg p-2 text-white text-xl font-bold font-['Nunito']"
       >
         SEO Audit Tool
         <IconChevronDown size={20} className="ml-1" />
@@ -109,7 +109,7 @@ const Navbar = () => {
       )}
     </div>
     {/* 'close dropdown menu */}
-          <a href='/blog' className="inline-flex items-center justify-center text-center cursor-pointer hover:bg-red-600 rounded-lg  p-2 text-white text-xl font-bold font-['Libre_Baskerville']">Blog</a>
+          <a href='/blog' className="inline-flex items-center justify-center text-center cursor-pointer hover:bg-red-600 rounded-lg  p-2 text-white text-xl font-bold font-['Nunito']">Blog</a>
         </nav>
         {/* add */}
        
@@ -117,10 +117,10 @@ const Navbar = () => {
         <div className="flex flex-col lg:flex-row gap-3.5 relative"> 
            {!user ? (
           <>
-              <a href='/createaccount' className="inline-flex text-center items-center justify-center hover:bg-red-600 bg-white rounded-lg px-5 py-2 text-black hover:text-white text-xl font-bold font-['Libre_Baskerville']">
+              <a href='/createaccount' className="inline-flex text-center items-center justify-center hover:bg-red-600 bg-white rounded-lg px-5 py-2 text-black hover:text-white text-xl font-bold font-['Nunito']">
                 <IconUsers size={30} />Signup
               </a>
-              <a href='/signin' className="inline-flex text-center items-center justify-center hover:bg-red-600 rounded-lg bg-white hover:text-white px-5 py-2 gap-1 text-black text-xl font-bold font-['Libre_Baskerville']">
+              <a href='/signin' className="inline-flex text-center items-center justify-center hover:bg-red-600 rounded-lg bg-white hover:text-white px-5 py-2 gap-1 text-black text-xl font-bold font-['Nunito']">
                 <IconUserCircle size={30} />Login
               </a>
               </>
@@ -130,7 +130,7 @@ const Navbar = () => {
               onMouseEnter={() => setShowDropdown(true)} 
               onMouseLeave={() => setShowDropdown(false)}
             >
-              <button className="inline-flex items-center justify-center bg-white rounded-lg px-5 py-2 gap-2 text-black text-xl font-bold font-['Libre_Baskerville'] cursor-pointer shadow-md min-w-[130px]">
+              <button className="inline-flex items-center justify-center bg-white rounded-lg px-5 py-2 gap-2 text-black text-xl font-bold font-['Nunito'] cursor-pointer shadow-md min-w-[130px]">
                 <IconUserCircle size={30} className="text-[#ED6D07]" />
                <span className="capitalize">{getButtonName()}</span> 
                 <IconChevronDown size={20} className={`transition-transform duration-300 ${showDropdown ? 'rotate-180' : ''}`} />
@@ -158,7 +158,7 @@ const Navbar = () => {
                     
                     <button 
                       onClick={handleLogout}
-                      className="w-full flex items-center gap-2 text-red-600 hover:bg-red-50 p-2 rounded-lg font-bold transition-all text-base cursor-pointer"
+                      className="w-full flex items-center gap-2 text-red-600 hover:bg-red-50 p-2 rounded-lg font-['Nunito'] font-bold transition-all text-base cursor-pointer"
                     >
                       <IconLogout size={20} /> Sign Out
                     </button>

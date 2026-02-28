@@ -73,13 +73,13 @@ const page = ({params}) => {
         <img src={blog.picture} alt={blog.title} className='object-fill w-full lg:mx-6 lg:w-1/2 rounded-xl h-72 lg:h-96 '/>
 
       </div>
-      <h1 className="text-2xl md:text-3xl font-bold font-['Libre_Baskerville']">{blog.title}</h1>
+      <h1 className="text-2xl md:text-3xl font-bold font-['Nunito']">{blog.title}</h1>
      
       <ReactMarkdown  remarkPlugins={[remarkGfm]}
     components={{
-      p: ({children}) => (<p className="text-xl mt-2.5 md:text-2xl font-['Rosario']">{children}</p>),
-      h2: ({children}) => (<h2 className="text-xl font-semibold md:text-2xl font-['Libre_Baskerville']">{children}</h2>),
-      li: ({children}) => (<li className="text-xl md:text-2xl font-['Rosario']">{children}</li>),
+      p: ({children}) => (<p className="text-base md:text-lg mt-2.5 font-['PT Sans']">{children}</p>),
+      h2: ({children}) => (<h2 className="text-xl font-semibold md:text-2xl font-['Nunito']">{children}</h2>),
+      li: ({children}) => (<li className="text-base md:text-lg font-['PT Sans']">{children}</li>),
       ol: ({children}) => (<ol className="list-decimal pl-6 mt-2">{children}</ol>),
       ul: ({children}) => (<ul className="mt-2 space-y-2 pl-2">{children}</ul>),
       }}>{blog.description}</ReactMarkdown>

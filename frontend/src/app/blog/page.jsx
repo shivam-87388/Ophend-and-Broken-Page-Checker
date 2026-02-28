@@ -51,7 +51,7 @@ const Blog = () => {
   ]
   return (
     <main className='m-8'>
-      <h1 className="p-2 text-5xl text-center font-['Libre_Baskerville']">Blogs
+      <h1 className="p-2 text-5xl text-center font-['Nunito']">Blogs
       </h1>
        <hr className="border-t-2 border-gray-400 mb-6"></hr>
       <section className='p-4 bg-gray-200 rounded-2xl'>
@@ -75,7 +75,7 @@ const Blog = () => {
 
       {/* Content */}
       <div className="pt-4 ">
-        <h2 className="text-xl font-semibold md:text-2xl font-['Libre_Baskerville']">
+        <h2 className="text-xl font-semibold md:text-2xl font-['Nunito']">
           {blog.title}
         </h2>
 
