@@ -2,7 +2,7 @@ const axios = require("axios");
 const xml2js = require("xml2js");
 const cheerio = require("cheerio");
 
-// 1. URL ko saaf karne ke liye logic
+
 const normalizeUrl = (url) => {
     try {
         const parsed = new URL(url);
@@ -12,7 +12,7 @@ const normalizeUrl = (url) => {
     } catch { return null; }
 };
 
-// 2. Sitemap se saare URLs nikalne ke liye
+
 const getAllUrlsFromSitemap = async (url) => {
     try {
         const response = await axios.get(url, {
@@ -34,7 +34,7 @@ const getAllUrlsFromSitemap = async (url) => {
     }
 };
 
-// 3. Website crawl karke internal links nikalne ke liye
+// 3. Website crawling to find internal links
 const getInternalLinks = async (websiteUrl, maxPages = 500) => {
     const visited = new Set();
     const internalLinks = new Set();

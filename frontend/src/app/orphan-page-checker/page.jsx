@@ -331,7 +331,7 @@ const [sitemapMissing, setSitemapMissing] = useState(false);
     <p className="text-sm italic text-gray-600">The tool is scanning your sitemap and crawling internal links. Please wait.</p>
   </div>
 )}
-{/* Sitemap Missing Message */}
+
 {/* Sitemap Missing Message */}
 {sitemapMissing && !loading && (
   <div className="mt-6 p-6 bg-red-50 border-2 border-red-200 rounded-2xl shadow-sm">
@@ -352,8 +352,7 @@ const [sitemapMissing, setSitemapMissing] = useState(false);
   </div>
 )}
 
-{/*New Result */}
-{/* 🟢 FINAL RESULT SECTION: Side-by-Side Layout with Scrolling & Bottom Button */}
+{/*Result */}
 {result && (
   <section className="mt-6 p-6 bg-white border-2 border-red-500 rounded-2xl shadow-lg">
     <h2 className="text-2xl md:text-3xl font-semibold font-['Nunito'] text-red-600 mb-6 border-b pb-2 ">
@@ -361,9 +360,9 @@ const [sitemapMissing, setSitemapMissing] = useState(false);
     </h2>
     
     <div className="flex flex-col md:flex-row gap-8 items-start">
-      {/* LEFT SIDE: Statistics & Scrolling URL List */}
+     
       <div className="w-full md:w-3/5">
-        {/* Statistics Row */}
+        
         <div className="grid grid-cols-2 gap-4 mb-6">
           <div className="p-4 bg-gray-100 rounded-lg border border-gray-200 shadow-sm">
             <p className="text-gray-500 font-bold text-[10px] uppercase tracking-wider">Total Sitemap URLs</p>
@@ -417,7 +416,7 @@ const [sitemapMissing, setSitemapMissing] = useState(false);
           </div>
         </div>
 
-        {/* Download Button: Chart ke theek niche */}
+        {/* Download Button*/}
         <button 
           onClick={downloadOrphanPDF}
           className="w-full bg-[#ED6D07] hover:bg-orange-600 text-white px-5 py-3 rounded-lg font-bold flex items-center justify-center gap-2 cursor-pointer shadow-lg transition-all active:scale-95"

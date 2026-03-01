@@ -14,7 +14,7 @@ const checkOrphanPages = async (req, res) => {
         // 1. Fetch Sitemap
         let rawSitemap = await getAllUrlsFromSitemap(sitemapUrl);
         
-        // 🛑 Blocking if no sitemap
+        //  Blocking if no sitemap
         if (!rawSitemap || rawSitemap.length === 0) {
             return res.status(200).json({ 
                 sitemapExists: false, 

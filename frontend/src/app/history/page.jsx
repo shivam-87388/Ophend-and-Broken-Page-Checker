@@ -11,7 +11,7 @@ const History = () => {
     useEffect(() => {
         const fetchHistory = async () => {
             try {
-                const token = localStorage.getItem("token"); // Auth token check karein
+                const token = localStorage.getItem("token"); // Auth token check
                 const res = await axios.get("http://localhost:5000/api/users/history", {
                     headers: { Authorization: `Bearer ${token}` }
                 });
@@ -61,7 +61,7 @@ const History = () => {
                                 </td>
                                 <td className="p-4">
                                     <button 
-                                 onClick={() => router.push(`/history/${scan._id}`)} // 🟢 Ye naye page par le jayega, naye tab mein nahi
+                                 onClick={() => router.push(`/history/${scan._id}`)}
                                 className="bg-indigo-600 text-white px-4 py-1 rounded text-sm hover:bg-indigo-700 font-bold transition-all"
                                 >
                                 View Full Report

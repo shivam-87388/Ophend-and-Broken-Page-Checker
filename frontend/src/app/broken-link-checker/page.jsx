@@ -223,7 +223,7 @@ const downloadBrokenPDF = async () => {
     <p className="text-sm italic text-gray-600">This may take a minute depending on the number of links.</p>
   </div>
 )}
-{/* Sitemap Missing Message - Sirf tab dikhega jab sitemap nahi hoga aur loading khatam hogi */}
+{/* Sitemap Missing Message */}
 {sitemapMissing && !loading && (
   <div className="mt-6 p-6 bg-red-50 border-2 border-red-200 rounded-2xl shadow-sm">
     <div className="flex items-start gap-4">
@@ -248,9 +248,9 @@ const downloadBrokenPDF = async () => {
     <div className="flex justify-between items-center mb-6 border-b pb-2">
       <h2 className="text-2xl font-bold font-['Nunito'] text-red-600">Broken Link Report</h2>
       
-      {/* 🔘 Download PDF Button */}
+      {/* Download PDF Button */}
       <button 
-        onClick={downloadBrokenPDF} // Ye wahi function hai jo maine pehle diya tha
+        onClick={downloadBrokenPDF} 
         className="bg-[#ED6D07] hover:bg-orange-600 text-white px-4 py-2 rounded-lg font-bold font-['Nunito'] flex items-center gap-2 transition-all active:scale-95 text-sm"
       >
         <i className="fa-solid fa-file-pdf"></i> Download PDF
